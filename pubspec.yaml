@@ -34,9 +34,10 @@ dependencies:
   loading_animations: ^2.1.0
   pull_to_refresh: ^2.0.0
   cached_network_image: ^3.0.0
-  connectivity: ^3.0.6
+  flutter_sticky_header: ^0.6.0
   overlay_support: ^1.2.1
   flutter_cache_manager: ^3.1.1
+  flutter_svg: ^0.22.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
