@@ -20,7 +20,7 @@ class Photos extends StatefulWidget {
   _PhotosState createState() => _PhotosState();
 }
 
-class _PhotosState extends State<Photos> {
+class _PhotosState extends State<Photos>  {
   //List of Data From server
   final List<Photo> photos = [];
   //Current Page
@@ -266,4 +266,5 @@ class _PhotosState extends State<Photos> {
     }
     return codeResponse;
   }
+
 }
