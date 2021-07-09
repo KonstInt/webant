@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_webant/bottom_bar/photos/photo_bloc/bloc/photo_bloc.dart';
+import 'package:flutter_webant/bloc/photo_bloc/photo_bloc.dart';
 import 'package:flutter_webant/bottom_bar/photos/screens/photos2.dart';
 
 

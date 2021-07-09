@@ -6,8 +6,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
-import 'package:flutter_webant/bottom_bar/photos/models/photo.dart';
+
 import 'package:flutter_webant/constants.dart';
+import 'package:flutter_webant/models/photo.dart';
 
 
 import 'package:pull_to_refresh/pull_to_refresh.dart';

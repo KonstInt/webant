@@ -1,28 +1,28 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 
-import '../../constants.dart';
-
-class CustomPasswordField extends StatefulWidget {
+class CustomTextFiled extends StatefulWidget {
   String text;
+  Widget icon;
   String RegExpStr;
-  CustomPasswordField(this.text, this.RegExpStr);
-  bool isObscure = true;
+  String ErrorMessage;
+  int minLength;
+  CustomTextFiled(this.text, this.icon, this.RegExpStr, this.ErrorMessage, this.minLength);
+
+  @override
+  _CustomTextFiledState createState() => _CustomTextFiledState();
+
+  final myController = TextEditingController();
   bool isValid = true;
-    final myController = TextEditingController();
-    String getText() {
+  String getText() {
     if (isValid)
       return myController.text;
     else
       return 'not valid';
   }
-  
-  @override
-  _CustomPasswordFieldState createState() => _CustomPasswordFieldState();
 }
 
-class _CustomPasswordFieldState extends State<CustomPasswordField> {
-  
-
+class _CustomTextFiledState extends State<CustomTextFiled> {
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
@@ -38,26 +38,34 @@ class _CustomPasswordFieldState extends State<CustomPasswordField> {
       child: Form(
         autovalidate: true,
         child: TextFormField(
+          controller: widget.myController,
           validator: (value) {
             if (value == '') {
               widget.isValid = true;
               return null;
             }
 
-            if (!RegExp(widget.RegExpStr).hasMatch(value!)) {
+             if(value!.length < widget.minLength){
+              widget.isValid = false;
+              return 'Min ${widget.minLength} symbols!';
+            }
+
+
+            if (!RegExp(widget.RegExpStr).hasMatch(value)) {
               //widget.myController.text = 'error';
               widget.isValid = false;
-              return 'Password mismatch';
+              return widget.ErrorMessage;
             } else {
               widget.isValid = true;
               return null;
             }
           },
-          controller: widget.myController,
-          obscureText: widget.isObscure,
+          //keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
+
+              //helperText: ' ',
               isDense: true,
-              contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+              contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 0),
               focusedBorder: OutlineInputBorder(
                 borderSide: const BorderSide(color: Colors.black54, width: 1.5),
               ),
@@ -65,19 +73,9 @@ class _CustomPasswordFieldState extends State<CustomPasswordField> {
                   BoxConstraints(minHeight: 44, minWidth: 30),
               border: OutlineInputBorder(),
               labelText: widget.text,
-              suffixIcon: IconButton(
-                  padding: EdgeInsets.only(left: 13),
-                  onPressed: () {
-                    setState(() {
-                      widget.isObscure = !widget.isObscure;
-                      print(widget.isObscure);
-                    });
-                  },
-                  icon: Constants.eyeIcon)),
+              suffixIcon: widget.icon),
         ),
       ),
     );
   }
-
-  
 }

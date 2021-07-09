@@ -1,8 +1,10 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:flutter_webant/bottom_bar/photos/models/photo.dart';
-import 'package:flutter_webant/bottom_bar/photos/services/photos_provider.dart';
+import 'package:flutter_webant/models/photo.dart';
+
+import 'package:flutter_webant/services/photos_provider.dart';
+
 
 
 

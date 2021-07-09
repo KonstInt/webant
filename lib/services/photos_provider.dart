@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:flutter_webant/bottom_bar/photos/models/photo.dart';
+import 'package:flutter_webant/models/photo.dart';
 import 'package:http/http.dart' as http;
 
 class PhotosProvider {

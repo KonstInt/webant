@@ -7,10 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
-import 'package:flutter_webant/bottom_bar/photos/models/photo.dart';
+import 'package:flutter_webant/bloc/photo_bloc/photo_bloc.dart';
 
-import 'package:flutter_webant/bottom_bar/photos/photo_bloc/bloc/photo_bloc.dart';
+
 import 'package:flutter_webant/constants.dart';
+import 'package:flutter_webant/models/photo.dart';
 
 
 import 'package:pull_to_refresh/pull_to_refresh.dart';

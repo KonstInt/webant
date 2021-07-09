@@ -1,28 +1,26 @@
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 
-class CustomTextFiled extends StatefulWidget {
+import '../../constants.dart';
+
+class CustomPasswordField extends StatefulWidget {
   String text;
-  Widget icon;
   String RegExpStr;
-  String ErrorMessage;
-
-  CustomTextFiled(this.text, this.icon, this.RegExpStr, this.ErrorMessage);
-
-  @override
-  _CustomTextFiledState createState() => _CustomTextFiledState();
-
-  final myController = TextEditingController();
+  CustomPasswordField(this.text, this.RegExpStr);
+  bool isObscure = true;
   bool isValid = true;
-  String getText() {
+  final myController = TextEditingController();
+  String? getText() {
     if (isValid)
       return myController.text;
     else
-      return 'not valid';
+      return null;
   }
+
+  @override
+  _CustomPasswordFieldState createState() => _CustomPasswordFieldState();
 }
 
-class _CustomTextFiledState extends State<CustomTextFiled> {
+class _CustomPasswordFieldState extends State<CustomPasswordField> {
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
@@ -38,28 +36,32 @@ class _CustomTextFiledState extends State<CustomTextFiled> {
       child: Form(
         autovalidate: true,
         child: TextFormField(
-          controller: widget.myController,
           validator: (value) {
             if (value == '') {
               widget.isValid = true;
               return null;
             }
 
-            if (!RegExp(widget.RegExpStr).hasMatch(value!)) {
+            if(value!.length < 8){
+              widget.isValid = false;
+              return 'Min 8 symbols!';
+            }
+
+            if (!RegExp(widget.RegExpStr).hasMatch(value)) {
               //widget.myController.text = 'error';
               widget.isValid = false;
-              return widget.ErrorMessage;
+              return 'A-z 1-9';
             } else {
+
               widget.isValid = true;
               return null;
             }
           },
-          //keyboardType: TextInputType.emailAddress,
+          controller: widget.myController,
+          obscureText: widget.isObscure,
           decoration: InputDecoration(
-
-              //helperText: ' ',
               isDense: true,
-              contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+              contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
               focusedBorder: OutlineInputBorder(
                 borderSide: const BorderSide(color: Colors.black54, width: 1.5),
               ),
@@ -67,7 +69,15 @@ class _CustomTextFiledState extends State<CustomTextFiled> {
                   BoxConstraints(minHeight: 44, minWidth: 30),
               border: OutlineInputBorder(),
               labelText: widget.text,
-              suffixIcon: widget.icon),
+              suffixIcon: IconButton(
+                  padding: EdgeInsets.only(left: 13),
+                  onPressed: () {
+                    setState(() {
+                      widget.isObscure = !widget.isObscure;
+                      print(widget.isObscure);
+                    });
+                  },
+                  icon: Constants.eyeIcon)),
         ),
       ),
     );
