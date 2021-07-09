@@ -1,9 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_webant/models/photo.dart';
+import 'package:flutter_webant/bottom_bar/photos/models/photo.dart';
 
-import '../constants.dart';
+
+import '../../../constants.dart';
+
+
 
 class FullScreenImage extends StatelessWidget {
   Photo photo;

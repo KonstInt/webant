@@ -6,11 +6,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'package:flutter_webant/bottom_bar/photos/models/photo.dart';
 import 'package:flutter_webant/constants.dart';
-import 'package:flutter_webant/models/photo.dart';
-import 'package:flutter_webant/screens/full_screen_image.dart';
+
+
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:http/http.dart' as http;
+
+import 'full_screen_image.dart';
 
 class Photos extends StatefulWidget {
   @override

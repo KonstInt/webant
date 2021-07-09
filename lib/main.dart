@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_webant/screens/new_photos.dart';
-import 'package:flutter_webant/screens/photos_holder.dart';
-import 'package:flutter_webant/screens/welcome_screen.dart';
+
+import 'package:flutter_webant/welcome_screen/welcome_screen.dart';
 import 'package:overlay_support/overlay_support.dart';
+
+import 'bottom_bar/photos/photos2_holder.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,7 +19,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
             //color: Colors.white,
             debugShowCheckedModeBanner: false,
-            theme: ThemeData(primarySwatch: Colors.pink),
+            
+            theme: ThemeData(primarySwatch: Colors.pink, ),
             home: SafeArea(
               child: MyHomePage(),
             ));
@@ -30,7 +32,7 @@ class MyHomePage extends StatefulWidget {
   //String amountInput;
  
   final List<Widget> screens = [//Photos('new'),
-  WelcomeScreen(), PhotosHolder()];
+  WelcomeScreen(), PhotosHolder2()];
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }

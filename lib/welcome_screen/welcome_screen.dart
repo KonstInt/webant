@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_webant/screens/sign_in.dart';
-import 'package:flutter_webant/screens/sign_up.dart';
+import 'package:flutter_webant/welcome_screen/screens/sign_in.dart';
+import 'package:flutter_webant/welcome_screen/screens/sign_up.dart';
 
 class WelcomeScreen extends StatelessWidget {
   @override

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import 'new_photos.dart';
+import 'screens/new_photos.dart';
 class PhotosHolder extends StatefulWidget {
  
   @override
   _PhotosHolderState createState() => _PhotosHolderState();
 }
 
-class _PhotosHolderState extends State<PhotosHolder> {
+class _PhotosHolderState extends State<PhotosHolder>  with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -41,4 +41,8 @@ class _PhotosHolderState extends State<PhotosHolder> {
       ),
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }
