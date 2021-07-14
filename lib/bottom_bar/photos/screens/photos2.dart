@@ -22,9 +22,20 @@ import 'full_screen_image.dart';
 class Photos2 extends StatefulWidget {
   @override
   String type;
-  Photos2(this.type);
+  int columns;
+  bool showHeader;
+  String name;
+  //List<Photo> photos = [];
+  Photos2(this.type, this.columns , this.showHeader, this.name);
+  
 
   _PhotosState2 createState() => _PhotosState2();
+  void Refresh(){
+    this.createState()._onRefresh();
+  }
+
+
+  
 }
 
 class _PhotosState2 extends State<Photos2>  {
@@ -38,14 +49,18 @@ class _PhotosState2 extends State<Photos2>  {
   //Connection
   bool connection = false;
 
+  
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);
 
   //Refresh List of Photos
   void _onRefresh() async {
+    DefaultCacheManager manager = new DefaultCacheManager();
+    manager.emptyCache();
     _photos.clear();
+    currentPage = 1;
     BlocProvider.of<PhotoBloc>(context).add(
-                      PhotoLoadEvent(widget.type,1, true),
+                      PhotoLoadEvent(widget.type,1, true, widget.name),
                     );
     _refreshController.refreshCompleted();
   }
@@ -54,11 +69,14 @@ class _PhotosState2 extends State<Photos2>  {
   void _onLoading() async {
     currentPage++;
      BlocProvider.of<PhotoBloc>(context).add(
-                      PhotoLoadEvent(widget.type,currentPage, false),
+                      PhotoLoadEvent(widget.type,currentPage, false, widget.name),
                     );
     //print(_photos.length );
     _refreshController.loadComplete();
   }
+
+  
+
 
   @override
   Widget build(BuildContext context) {
@@ -67,15 +85,15 @@ class _PhotosState2 extends State<Photos2>  {
 
     return Scaffold(
       body: Column(children: [
-        AppBar(
-          title: Text(type,
+        widget.showHeader ? AppBar(
+          title:  Text(type,
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 35,
                   color: Colors.purple[900])),
           backgroundColor: Colors.white,
           iconTheme: IconThemeData(color: Colors.black),
-        ),
+        ): SizedBox(height: 0,),
         Expanded(
           child: BlocListener<PhotoBloc, PhotoState>(
           listener: (context, state) {
@@ -86,106 +104,109 @@ class _PhotosState2 extends State<Photos2>  {
             // TODO: implement listener
           },
           child: BlocBuilder<PhotoBloc, PhotoState>(builder: (context, state) {
-            return Container(
-              //margin: EdgeInsets.only(top: 70),
-              color: Colors.white,
-              child: SmartRefresher(
-                enablePullDown: true,
-                enablePullUp: true,
-                header: ClassicHeader(),
-                footer: CustomFooter(
-                  builder: (BuildContext context, mode) {
-                    Widget body;
-                    if (mode == LoadStatus.idle) {
-                      body = CupertinoActivityIndicator();
-                    } else if (mode == LoadStatus.loading) {
-                      body = CupertinoActivityIndicator();
-                    } else if (mode == LoadStatus.failed) {
-                      body = Text("Load Failed!Click retry!");
-                    } else if (mode == LoadStatus.canLoading) {
-                      body = Text("release to load more");
-                    } else {
-                      body = Text("No more Data");
+            
+            return SafeArea(
+                          child: Container(
+                //margin: EdgeInsets.only(top: 48),
+                color: Colors.white,
+                child: SmartRefresher(
+                  enablePullDown: true,
+                  enablePullUp: true,
+                  header: ClassicHeader(),
+                  footer: CustomFooter(
+                    builder: (BuildContext context, mode) {
+                      Widget body;
+                      if (mode == LoadStatus.idle) {
+                        body = CupertinoActivityIndicator();
+                      } else if (mode == LoadStatus.loading) {
+                        body = CupertinoActivityIndicator();
+                      } else if (mode == LoadStatus.failed) {
+                        body = Text("Load Failed!Click retry!");
+                      } else if (mode == LoadStatus.canLoading) {
+                        body = Text("release to load more");
+                      } else {
+                        body = Text("No more Data");
+                      }
+                      return Container(
+                        height: 55.0,
+                        child: Center(child: body),
+                      );
+                    },
+                  ),
+                  controller: _refreshController,
+                  onRefresh: _onRefresh,
+                  onLoading: _onLoading,
+                  child: (() {
+                    if (state is PhotoErrorState) {
+                      return Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Image.asset(Constants.noInternetPicturePath),
+                            Text(
+                              "No Data Connection Available.",
+                            )
+                          ],
+                        ),
+                      );
                     }
-                    return Container(
-                      height: 55.0,
-                      child: Center(child: body),
-                    );
-                  },
-                ),
-                controller: _refreshController,
-                onRefresh: _onRefresh,
-                onLoading: _onLoading,
-                child: (() {
-                  if (state is PhotoErrorState) {
-                    return Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Image.asset(Constants.noInternetPicturePath),
-                          Text(
-                            "No Data Connection Available.",
-                          )
-                        ],
-                      ),
-                    );
-                  }
-                  if (state is PhotoLoadingState) {
-                    return Center(
-                      child: Text('Loading...'),
-                    );
-                  }
+                    if (state is PhotoLoadingState) {
+                      return Center(
+                        child: Text('Loading...'),
+                      );
+                    }
 
-                  if (state is PhotoLoadedState) {
-                    return GridView.builder(
-                      //padding: EdgeInsets.only(top: 15),
-
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                      ),
-                      itemBuilder: (BuildContext context, int index) {
-                        return GestureDetector(
-                          child: Center(
-                            child: Container(
-                              margin: EdgeInsets.all(5.0),
-                              alignment: Alignment.center,
+                    if (state is PhotoLoadedState) {
+                      return GridView.builder(
+                        //padding: EdgeInsets.only(top: 15),
+                        
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: widget.columns,
+                        ),
+                        itemBuilder: (BuildContext context, int index) {
+                          return GestureDetector(
+                            child: Center(
                               child: Container(
-                                child: CachedNetworkImage(
-                                  imageUrl: Constants.webAdressForPicture +
-                                      _photos[index].image.name,
-                                  imageBuilder: (context, imageProvider) =>
-                                      Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(30.0),
-                                      image: DecorationImage(
-                                          image: imageProvider,
-                                          fit: BoxFit.cover),
+                                margin: EdgeInsets.all(5.0),
+                                alignment: Alignment.center,
+                                child: Container(
+                                  child: CachedNetworkImage(
+                                    imageUrl: Constants.webAdressForPicture +
+                                        _photos[index].image.name,
+                                    imageBuilder: (context, imageProvider) =>
+                                        Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(30.0),
+                                        image: DecorationImage(
+                                            image: imageProvider,
+                                            fit: BoxFit.cover),
+                                      ),
                                     ),
+                                    placeholder: (context, url) =>
+                                        CupertinoActivityIndicator(),
+                                    errorWidget: (context, url, error) =>
+                                        Icon(Icons.error),
                                   ),
-                                  placeholder: (context, url) =>
-                                      CupertinoActivityIndicator(),
-                                  errorWidget: (context, url, error) =>
-                                      Icon(Icons.error),
                                 ),
                               ),
                             ),
-                          ),
-                          onTap: () {
-                            //GO to the full_screen_image
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => FullScreenImage(
-                                        _photos[index])));
-                          },
-                        );
-                      },
-                      itemCount: _photos.length,
-                      //controller: _scrollViewController,
-                    );
-                  }
-                }()),
+                            onTap: () {
+                              //GO to the full_screen_image
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => FullScreenImage(
+                                          _photos[index])));
+                            },
+                          );
+                        },
+                        itemCount: _photos.length,
+                        //controller: _scrollViewController,
+                      );
+                    }
+                  }()),
+                ),
               ),
             );
           }),

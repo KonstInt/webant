@@ -10,6 +10,7 @@ class PhotosHolder extends StatefulWidget {
 class _PhotosHolderState extends State<PhotosHolder>  with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
+    //super.build(context);
     return DefaultTabController(
       length: 2,
       child:  Scaffold(

@@ -34,6 +34,8 @@ class _PhotosState extends State<Photos>  {
   //Connection
   bool connection = false;
 
+  
+
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);
 

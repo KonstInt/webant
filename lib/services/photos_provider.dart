@@ -6,10 +6,10 @@ import 'package:http/http.dart' as http;
 class PhotosProvider {
 
   
-  static Future<List<Photo>> getPhotos(String type, int page) async {
+  static Future<List<Photo>> getPhotos(String type, int page, String name) async {
     final List<Photo> photos = [];
     
-    final String adress = 'http://gallery.dev.webant.ru/api/photos?$type=true&page=$page&limit=20';
+    final String adress = 'http://gallery.dev.webant.ru/api/photos?$type=true&name=$name&page=$page&limit=20';
     try {
       final response = await http.get(
           Uri.parse(adress),
