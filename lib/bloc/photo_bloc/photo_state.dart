@@ -31,4 +31,5 @@ class PhotoLoadingState extends PhotoState {
 }
 
 
+
 class PhotoErrorState extends PhotoState {}

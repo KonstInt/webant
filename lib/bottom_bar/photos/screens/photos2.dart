@@ -67,12 +67,16 @@ class _PhotosState2 extends State<Photos2>  {
 
   //Add Images to List  DFFDFGDGDFLDGFLDFGLDFLFDFGLDFGLGDFLGFLLDFGSLDFGLFGDL
   void _onLoading() async {
+    
     currentPage++;
      BlocProvider.of<PhotoBloc>(context).add(
                       PhotoLoadEvent(widget.type,currentPage, false, widget.name),
                     );
     //print(_photos.length );
+    if(!isLast)
     _refreshController.loadComplete();
+    else
+    _refreshController.loadNoData();
   }
 
   
@@ -157,7 +161,10 @@ class _PhotosState2 extends State<Photos2>  {
                       );
                     }
 
-                    if (state is PhotoLoadedState) {
+                    if (state is PhotoLoadedState || (state is PhotoEmptyState && _photos.isNotEmpty)) {
+                      if(state is PhotoEmptyState)
+                          isLast = true;
+            
                       return GridView.builder(
                         //padding: EdgeInsets.only(top: 15),
                         
@@ -204,6 +211,14 @@ class _PhotosState2 extends State<Photos2>  {
                         itemCount: _photos.length,
                         //controller: _scrollViewController,
                       );
+                    }
+
+                    if(state is PhotoEmptyState && _photos.isEmpty)
+                    {
+                       return Center(
+                        child: Text('No Data'),
+                      ); 
+                          
                     }
                   }()),
                 ),
