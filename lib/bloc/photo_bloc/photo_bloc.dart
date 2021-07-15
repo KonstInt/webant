@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter_webant/models/photo.dart';
@@ -33,11 +34,13 @@ class PhotoBloc extends Bloc<PhotoEvent, PhotoState> {
         else
         yield PhotoEmptyState();
       }
-      catch(_){
-        yield PhotoErrorState();
-        
+      catch (e) {
+        if(e == SocketException)
+         yield PhotoErrorState();
+        else
+          yield PhotoEmptyState(); 
       }
-
+      
     
 
     }

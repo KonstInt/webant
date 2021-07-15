@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-class UserCollection {
+class UserGet {
   int id;
   String email;
   bool enabled;
@@ -9,8 +9,7 @@ class UserCollection {
   String username;
   String birthday;
   List<String> roles;
-  
-  UserCollection({
+  UserGet({
     required this.id,
     required this.email,
     required this.enabled,
@@ -21,10 +20,6 @@ class UserCollection {
     required this.roles,
   });
 
-
-
-
- 
   Map<String, dynamic> toMap() {
     return {
       'id': id,
@@ -38,20 +33,20 @@ class UserCollection {
     };
   }
 
-  factory UserCollection.fromMap(Map<String, dynamic> map) {
-    return UserCollection(
+  factory UserGet.fromMap(Map<String, dynamic> map) {
+    return UserGet(
       id: map['id'],
-      email: map['email'],
+      email: map['email'] != null ? map['email'] :'',
       enabled: map['enabled'],
-      phone: map['phone'] != null ? map['phone']: '',
-      fullName: map['fullName'] != null ? map['fullName']: '',
-      username: map['username']!= null ?map['username']: '',
-      birthday: map['birthday'] != null ? map['birthday']: '',
+      phone: map['phone'] != null ? map['phone']:'',
+      fullName: map['fullName'] != null ? map['fullName'] :'',
+      username: map['username'] != null ? map['username'] :'',
+      birthday: map['birthday'] != null ? map['birthday'] :'',
       roles: List<String>.from(map['roles']),
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory UserCollection.fromJson(String source) => UserCollection.fromMap(json.decode(source));
+  factory UserGet.fromJson(String source) => UserGet.fromMap(json.decode(source));
 }

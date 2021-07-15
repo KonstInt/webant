@@ -1,6 +1,3 @@
-import 'dart:async';
-import 'dart:convert';
-import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,13 +6,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_webant/bloc/photo_bloc/photo_bloc.dart';
 
-
 import 'package:flutter_webant/constants.dart';
 import 'package:flutter_webant/models/photo.dart';
 
-
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:http/http.dart' as http;
+
 
 import 'full_screen_image.dart';
 
@@ -25,31 +20,25 @@ class Photos2 extends StatefulWidget {
   int columns;
   bool showHeader;
   String name;
+  bool isLast = false;
   //List<Photo> photos = [];
-  Photos2(this.type, this.columns , this.showHeader, this.name);
-  
+  Photos2(this.type, this.columns, this.showHeader, this.name);
 
   _PhotosState2 createState() => _PhotosState2();
-  void Refresh(){
+  void Refresh() {
     this.createState()._onRefresh();
   }
-
-
-  
 }
 
-class _PhotosState2 extends State<Photos2>  {
-
-  
+class _PhotosState2 extends State<Photos2> {
   List<Photo> _photos = [];
   //Current Page
   int currentPage = 1;
   //Flag For The End of List
-  bool isLast = false;
+
   //Connection
   bool connection = false;
 
-  
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);
 
@@ -60,27 +49,24 @@ class _PhotosState2 extends State<Photos2>  {
     _photos.clear();
     currentPage = 1;
     BlocProvider.of<PhotoBloc>(context).add(
-                      PhotoLoadEvent(widget.type,1, true, widget.name),
-                    );
+      PhotoLoadEvent(widget.type, 1, true, widget.name),
+    );
     _refreshController.refreshCompleted();
   }
 
   //Add Images to List  DFFDFGDGDFLDGFLDFGLDFLFDFGLDFGLGDFLGFLLDFGSLDFGLFGDL
   void _onLoading() async {
-    
-    currentPage++;
-     BlocProvider.of<PhotoBloc>(context).add(
-                      PhotoLoadEvent(widget.type,currentPage, false, widget.name),
-                    );
-    //print(_photos.length );
-    if(!isLast)
-    _refreshController.loadComplete();
-    else
-    _refreshController.loadNoData();
+    if (!widget.isLast) {
+      currentPage++;
+      BlocProvider.of<PhotoBloc>(context).add(
+        PhotoLoadEvent(widget.type, currentPage, false, widget.name),
+      );
+      //print(_photos.length );
+
+      _refreshController.loadComplete();
+    } else
+      _refreshController.loadNoData();
   }
-
-  
-
 
   @override
   Widget build(BuildContext context) {
@@ -89,28 +75,30 @@ class _PhotosState2 extends State<Photos2>  {
 
     return Scaffold(
       body: Column(children: [
-        widget.showHeader ? AppBar(
-          title:  Text(type,
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 35,
-                  color: Colors.purple[900])),
-          backgroundColor: Colors.white,
-          iconTheme: IconThemeData(color: Colors.black),
-        ): SizedBox(height: 0,),
+        widget.showHeader
+            ? AppBar(
+                title: Text(type,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 35,
+                        color: Colors.purple[900])),
+                backgroundColor: Colors.white,
+                iconTheme: IconThemeData(color: Colors.black),
+              )
+            : SizedBox(
+                height: 0,
+              ),
         Expanded(
-          child: BlocListener<PhotoBloc, PhotoState>(
+            child: BlocListener<PhotoBloc, PhotoState>(
           listener: (context, state) {
-
-            if(state is PhotoLoadedState){
+            if (state is PhotoLoadedState) {
               _photos.addAll(state.loadedPhoto);
             }
             // TODO: implement listener
           },
           child: BlocBuilder<PhotoBloc, PhotoState>(builder: (context, state) {
-            
             return SafeArea(
-                          child: Container(
+              child: Container(
                 //margin: EdgeInsets.only(top: 48),
                 color: Colors.white,
                 child: SmartRefresher(
@@ -161,13 +149,13 @@ class _PhotosState2 extends State<Photos2>  {
                       );
                     }
 
-                    if (state is PhotoLoadedState || (state is PhotoEmptyState && _photos.isNotEmpty)) {
-                      if(state is PhotoEmptyState)
-                          isLast = true;
-            
+                    if (state is PhotoLoadedState ||
+                        (state is PhotoEmptyState && _photos.isNotEmpty)) {
+                      if (state is PhotoEmptyState) widget.isLast = true;
+
                       return GridView.builder(
                         //padding: EdgeInsets.only(top: 15),
-                        
+
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: widget.columns,
                         ),
@@ -184,7 +172,8 @@ class _PhotosState2 extends State<Photos2>  {
                                     imageBuilder: (context, imageProvider) =>
                                         Container(
                                       decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(30.0),
+                                        borderRadius:
+                                            BorderRadius.circular(30.0),
                                         image: DecorationImage(
                                             image: imageProvider,
                                             fit: BoxFit.cover),
@@ -203,8 +192,8 @@ class _PhotosState2 extends State<Photos2>  {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => FullScreenImage(
-                                          _photos[index])));
+                                      builder: (context) =>
+                                          FullScreenImage(_photos[index])));
                             },
                           );
                         },
@@ -213,12 +202,11 @@ class _PhotosState2 extends State<Photos2>  {
                       );
                     }
 
-                    if(state is PhotoEmptyState && _photos.isEmpty)
-                    {
-                       return Center(
+                    if (state is PhotoEmptyState && _photos.isEmpty) {
+                      widget.isLast = true;
+                      return Center(
                         child: Text('No Data'),
-                      ); 
-                          
+                      );
                     }
                   }()),
                 ),
@@ -229,8 +217,4 @@ class _PhotosState2 extends State<Photos2>  {
       ]),
     );
   }
-
-
-  
-
 }

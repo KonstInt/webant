@@ -1,11 +1,12 @@
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_webant/bloc/user_bloc/user_bloc.dart';
+import 'package:flutter_webant/models/user_post.dart';
+import 'package:flutter_webant/root_page.dart';
 import 'package:flutter_webant/welcome_screen/screens/sign_in.dart';
 import 'package:flutter_webant/welcome_screen/screens/welcome_screen.dart';
 import 'package:flutter_webant/widgets/custom_pass_with_confim.dart';
 import 'package:flutter_webant/widgets/custom_text_field.dart';
-
 import 'package:intl/intl.dart';
 
 import '../../constants.dart';
@@ -36,12 +37,6 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
-    @override
-    void dispose() {
-      // Clean up the controller when the widget is removed
-      //widget.dateController.dispose();
-      super.dispose();
-    }
 
     return GestureDetector(
       onTap: () {
@@ -61,13 +56,15 @@ class _SignUpState extends State<SignUp> {
                     fontWeight: FontWeight.w300)),
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent,
-            onPressed: () => {   Navigator.pushAndRemoveUntil(
+            onPressed: () {
+                         
+                          Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
                             builder: (BuildContext context) => WelcomeScreen(),
                           ),
                           (route) => false,
-                        )},
+                        );},
           ),
           automaticallyImplyLeading: false,
           backgroundColor: Colors.white,
@@ -143,7 +140,24 @@ class _SignUpState extends State<SignUp> {
                       primary: Colors.orange,
                     ),
                     onPressed: () {
-                      print(widget.email.getText());
+                      //UserGet myUser;
+                      UserPost signUpUser = new UserPost(email: widget.email.getText(), password: widget.passwordConfim.getText(), phone: 'dj;dkj;lskd;kd;dkfndf', fullName: widget.username.getText(), roles: ["user"], birthday: widget.dateController.text, username: widget.username.getText());
+                      Constants.isInSystem = true;
+                      Constants.isInSystem = true;
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (BuildContext context) => BlocProvider(
+                      create: (context) => UserBloc()
+                        ..add(new UserCreateEvent(
+                           signUpUser)),
+                      child:
+                          //search
+                          RootPage()),
+                          ),
+                          
+                        );
+                      
                     },
                     child:
                         Text("Sign Up", style: TextStyle(color: Colors.white)),

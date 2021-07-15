@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_webant/bloc/photo_bloc/photo_bloc.dart';
+import 'package:flutter_webant/bloc/user_bloc/user_bloc.dart';
+import 'package:flutter_webant/bottom_bar/photos/screens/photos2.dart';
 import 'package:flutter_webant/main.dart';
+import 'package:flutter_webant/root_page.dart';
 import 'package:flutter_webant/widgets/custom_text_field.dart';
 import 'package:flutter_webant/welcome_screen/screens/sign_up.dart';
 import 'package:flutter_webant/welcome_screen/screens/welcome_screen.dart';
@@ -110,12 +115,17 @@ class _SignInState extends State<SignIn> {
                       ),
                       onPressed: () {
                         Constants.isInSystem = true;
-                        Navigator.pushAndRemoveUntil(
+                        Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (BuildContext context) => MyHomePage(),
+                            builder: (BuildContext context) => BlocProvider(
+                      create: (context) => UserBloc()
+                        ..add(new UserLoadEvent(widget.email.getText(), widget.password.getText())),
+                      child:
+                          //search
+                          RootPage()),
                           ),
-                          (route) => false,
+                          
                         );
                       
                       },

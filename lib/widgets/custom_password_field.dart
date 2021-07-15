@@ -9,11 +9,11 @@ class CustomPasswordField extends StatefulWidget {
   bool isObscure = true;
   bool isValid = true;
   final myController = TextEditingController();
-  String? getText() {
+  String getText() {
     if (isValid)
       return myController.text;
     else
-      return null;
+      return '';
   }
 
   @override

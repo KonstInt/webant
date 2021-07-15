@@ -57,7 +57,7 @@ class _CustomPassWithConfimState extends State<CustomPassWithConfim> {
                   return null;
                 }
 
-                if(widget.password.getText() == null){
+                if(widget.password.getText() == ''){
                   widget.isValid = false;
                   return 'Enter correct original password';
                 }

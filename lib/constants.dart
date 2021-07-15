@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import 'models/user_get.dart';
+
 class Constants {
   static String noInternetPicturePath = 'assets/images/no_internet.png';
   static String webAdressForPicture = "http://gallery.dev.webant.ru/media/";
@@ -11,7 +13,9 @@ class Constants {
   static String myassetFeedName = 'assets/images/news_feed.svg';
   static String myassetProfileName = 'assets/images/profile_icon.svg';
   static String myassetHomeName = 'assets/images/home_icon.svg';
-
+  static late UserGet currentUser;
+  static String refreshToken = '';
+  static String password = '';
   static bool isInSystem = true;
 
 

@@ -58,14 +58,14 @@ packages:
     source: hosted
     version: "2.0.2"
   built_collection:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: built_collection
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.1.0"
   built_value:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: built_value
       url: "https://pub.dartlang.org"
@@ -93,7 +93,7 @@ packages:
     source: hosted
     version: "1.2.0"
   chopper:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: chopper
       url: "https://pub.dartlang.org"
@@ -162,20 +162,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
-  email_validator:
+  dio:
     dependency: "direct main"
     description:
-      name: email_validator
+      name: dio
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.1"
-  equatable:
-    dependency: "direct main"
-    description:
-      name: equatable
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.3"
+    version: "4.0.0"
   fake_async:
     dependency: transitive
     description:
@@ -237,13 +230,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.0"
-  flutter_sticky_header:
-    dependency: "direct main"
-    description:
-      name: flutter_sticky_header
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.6.0"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -291,20 +277,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.17.0"
-  kiwi:
-    dependency: "direct main"
-    description:
-      name: kiwi
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.0"
-  loading_animations:
-    dependency: "direct main"
-    description:
-      name: loading_animations
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.2.0"
   logging:
     dependency: transitive
     description:
@@ -340,13 +312,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0+1"
-  overlay_support:
-    dependency: "direct main"
-    description:
-      name: overlay_support
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.2.1"
   package_config:
     dependency: transitive
     description:
@@ -569,13 +534,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.4"
-  value_layout_builder:
-    dependency: transitive
-    description:
-      name: value_layout_builder
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.3.1"
   vector_math:
     dependency: transitive
     description:
