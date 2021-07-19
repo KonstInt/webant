@@ -141,8 +141,7 @@ class _SignUpState extends State<SignUp> {
                     ),
                     onPressed: () {
                       //UserGet myUser;
-                      UserPost signUpUser = new UserPost(email: widget.email.getText(), password: widget.passwordConfim.getText(), phone: 'dj;dkj;lskd;kd;dkfndf', fullName: widget.username.getText(), roles: ["user"], birthday: widget.dateController.text, username: widget.username.getText());
-                      Constants.isInSystem = true;
+                      UserPost signUpUser = new UserPost(email: widget.email.getText(), password: widget.passwordConfim.getText(), fullName: widget.username.getText(), roles: ["user"], birthday: widget.dateController.text, username: widget.username.getText());
                       Constants.isInSystem = true;
                         Navigator.push(
                           context,
@@ -150,10 +149,10 @@ class _SignUpState extends State<SignUp> {
                             builder: (BuildContext context) => BlocProvider(
                       create: (context) => UserBloc()
                         ..add(new UserCreateEvent(
-                           signUpUser)),
+                           signUpUser,widget.passwordConfim.getText() )),
                       child:
                           //search
-                          RootPage()),
+                          RootPage('')),
                           ),
                           
                         );

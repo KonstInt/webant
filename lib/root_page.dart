@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_webant/constants.dart';
 import 'package:flutter_webant/my_home_page.dart';
+import 'package:flutter_webant/welcome_screen/screens/welcome_screen.dart';
 
 import 'bloc/user_bloc/user_bloc.dart';
 
 class RootPage extends StatefulWidget {
+  String type;
+  RootPage(this.type);
   @override
   _RootPageState createState() => _RootPageState();
 }
@@ -21,38 +24,51 @@ class _RootPageState extends State<RootPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocBuilder<UserBloc, UserState>(builder: (context, state) {
-        return Center(
-          child: (() {
-            if (state is UserLoadingState) {
-              return Center(child: CupertinoActivityIndicator());
-            }
-            if (state is UserLoadedState) {
-              Constants.isInSystem = true;
-              Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                  builder: (BuildContext context) => MyHomePage(),
-                ),
-                (route) => false,
-              );
-            }
-            if (state is UserNoInternetState) {
-              Constants.isInSystem = true;
-              Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                  builder: (BuildContext context) => MyHomePage(),
-                ),
-                (route) => false,
-              );
-            }
-            if (state is UserNotAccesState) {
-              Constants.isInSystem = true;
-              Navigator.pop(context);
-            }
-          }()),
-        );
+      body: BlocConsumer<UserBloc, UserState>(listener: (c, state) {
+        ///*
+        if (state is UserNotAccesState) {
+          if (widget.type == 'auto') {
+            Constants.isInSystem = true;
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => WelcomeScreen(),
+              ),
+              (route) => false,
+            );
+          } else {
+            Constants.isInSystem = true;
+            Navigator.pop(context);
+          }
+        }
+
+        if (state is UserLoadedState) {
+          Constants.isInSystem = true;
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) => MyHomePage(),
+            ),
+            (route) => false,
+          );
+        }
+        if (state is UserNoInternetState) {
+          Constants.isInSystem = true;
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) => MyHomePage(),
+            ),
+            (route) => false,
+          );
+        }
+        //*/
+      }, builder: (context, state) {
+        if (state is UserLoadingState) {
+          return Center(child: CupertinoActivityIndicator());
+        } else {
+          return Container();
+        }
       }),
     );
   }

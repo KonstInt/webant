@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_webant/constants.dart';
+import 'package:flutter_webant/root_page.dart';
 import 'package:flutter_webant/welcome_screen/screens/welcome_screen.dart';
 
+import 'bloc/user_bloc/user_bloc.dart';
 import 'bottom_bar/photos/photos2_holder.dart';
 import 'bottom_bar/profile/screens/user_profile.dart';
 
@@ -61,4 +64,14 @@ class _MyHomePageState extends State<MyHomePage> {
     else
       return WelcomeScreen();
   }
+}
+Widget Navigation() {
+  return Scaffold(
+      body: BlocProvider(
+          create: (context) => UserBloc()
+            ..add(new UserLoadEvent(
+                Constants.currentUser.email, Constants.password)),
+          child:
+              //search
+              RootPage('auto')));
 }

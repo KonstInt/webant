@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_webant/bloc/photo_bloc/photo_bloc.dart';
 import 'package:flutter_webant/bottom_bar/photos/screens/photos2.dart';
+import 'package:flutter_webant/bottom_bar/profile/screens/user_settings.dart';
 import 'package:flutter_webant/bottom_bar/profile/widgets/header_profile.dart';
 
 class UserProfile extends StatefulWidget {
@@ -30,7 +31,9 @@ class _UserProfileState extends State<UserProfile> {
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(color: Colors.black),
         // TODO: implement
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.settings))],
+        actions: [IconButton(onPressed: () {Navigator.push(context, MaterialPageRoute(
+              builder: (BuildContext context) => UserSettings(),
+            ),);}, icon: Icon(Icons.settings))],
         bottom: PreferredSize(
             child: Container(
               color: Colors.grey[600],

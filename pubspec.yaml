@@ -36,14 +36,16 @@ dependencies:
   flutter_svg: ^0.22.0
   intl: ^0.17.0
   flutter_bloc: ^7.0.1
-  dio: ^4.0.0
+  hive: ^2.0.4
+  hive_flutter: ^1.1.0
+  image_picker: ^0.8.2
   
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  chopper_generator: ^4.0.1
   provider: ^5.0.0
   flutter_native_splash: ^1.2.0
+  hive_generator: ^1.1.0
 
 flutter_native_splash:
   color: "#ffffff"

@@ -27,7 +27,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       yield UserLoadingState();
       try{
 
-        final UserGet user = await UserProviderCreate.getUser(event.user);
+        final UserGet user = await UserProviderCreate.getUser(event.user, event.password);
         Constants.currentUser = user;
         yield UserLoadedState(user);
 
@@ -41,7 +41,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       yield UserLoadingState();
       try{
  
-        final UserGet user = await UserProvider.getUser(event.username, event.password, new ClientPost(name: 'flutter', allowedGrantTypes: ["password", "refresh_token"]));
+        final UserGet user = await UserProvider.getUser(event.username, event.password, new ClientPost(name: 'flutter', allowedGrantTypes: ["password", "refresh_token"]), 'password');
         Constants.currentUser = user;
         yield UserLoadedState(user);
       

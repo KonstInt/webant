@@ -28,11 +28,11 @@ class ClientGet {
 
   factory ClientGet.fromMap(Map<String, dynamic> map) {
     return ClientGet(
-      id: map['id'],
-      name: map['name'],
-      randomId: map['randomId'],
-      secret: map['secret'],
-      allowedGrantTypes: List<String>.from(map['allowedGrantTypes']),
+      id: map['id'] != null ? map['id'] :0,
+      name: map['name'] != null ? map['name'] :' ',
+      randomId: map['randomId'] != null ? map['randomId'] :' ',
+      secret: map['secret'] != null ? map['secret'] :' ',
+      allowedGrantTypes: map ['allowedGrantTypes'] != null ? List<String>.from(map['allowedGrantTypes']) : [],
     );
   }
 

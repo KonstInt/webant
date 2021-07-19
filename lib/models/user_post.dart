@@ -3,7 +3,7 @@ import 'dart:convert';
 class UserPost {
 
   String email;
-  String phone;
+
   String fullName;
   String password;
   String username;
@@ -12,7 +12,6 @@ class UserPost {
   
   UserPost({
     required this.email,
-    required this.phone,
     required this.fullName,
     required this.password,
     required this.username,
@@ -28,7 +27,6 @@ class UserPost {
   Map<String, dynamic> toMap() {
     return {
       'email': email,
-      'phone': phone,
       'fullName': fullName,
       'password': password,
       'username': username,
@@ -40,7 +38,6 @@ class UserPost {
   factory UserPost.fromMap(Map<String, dynamic> map) {
     return UserPost(
       email: map['email'] != null ? map['email'] :' ',
-      phone: map['phone'] != null ? map['phone']:' ',
       fullName: map['fullName'] != null ? map['fullName'] :' ',
       password: map['password'] != null ? map['password'] :' ',
       username: map['username'] != null ? map['username'] :' ',

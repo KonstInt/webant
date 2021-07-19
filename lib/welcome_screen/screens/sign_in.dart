@@ -123,7 +123,7 @@ class _SignInState extends State<SignIn> {
                         ..add(new UserLoadEvent(widget.email.getText(), widget.password.getText())),
                       child:
                           //search
-                          RootPage()),
+                          RootPage('')),
                           ),
                           
                         );

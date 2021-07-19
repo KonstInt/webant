@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import 'models/client_get.dart';
 import 'models/user_get.dart';
 
 class Constants {
@@ -15,10 +16,11 @@ class Constants {
   static String myassetHomeName = 'assets/images/home_icon.svg';
   static late UserGet currentUser;
   static String refreshToken = '';
+  static String token = '';
   static String password = '';
+  static late ClientGet client;
   static bool isInSystem = true;
-
-
+  
 
 
    static final Widget svgProfileIcon =

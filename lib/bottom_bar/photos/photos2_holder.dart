@@ -12,6 +12,7 @@ class PhotosHolder2 extends StatefulWidget {
   @override
   _PhotosHolderState2 createState() => _PhotosHolderState2();
   bool isSearched = false;
+  
 }
 
 class _PhotosHolderState2 extends State<PhotosHolder2> {
@@ -30,30 +31,30 @@ class _PhotosHolderState2 extends State<PhotosHolder2> {
   Widget build(BuildContext context) {
     //Photos2 search = new Photos2(' ', 2, false, widget.searchController.text);
     //super.build(context);
+    PhotoBloc pb = PhotoBloc();
     return GestureDetector(
-        onTap: () {
-          FocusScopeNode currentFocus = FocusScope.of(context);
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
 
-          if (!currentFocus.hasPrimaryFocus) {
-            currentFocus.unfocus();
-          }
-        },
-        onScaleUpdate: (value) {
-          FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
+        }
+      },
+      onScaleUpdate: (value) {
+        FocusScopeNode currentFocus = FocusScope.of(context);
 
-          if (!currentFocus.hasPrimaryFocus) {
-            currentFocus.unfocus();
-          }
-        },
-        onTapDown: (value) {
-          FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
+        }
+      },
+      onTapDown: (value) {
+        FocusScopeNode currentFocus = FocusScope.of(context);
 
-          if (!currentFocus.hasPrimaryFocus) {
-            currentFocus.unfocus();
-          }
-        },
-        
-        child:  DefaultTabController(
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
+        }
+      },
+      child: DefaultTabController(
         length: widget.isSearched ? 1 : 2,
         child: Scaffold(
           body: widget.isSearched
@@ -79,8 +80,8 @@ class _PhotosHolderState2 extends State<PhotosHolder2> {
                               else
                                 widget.isSearched = true;
 
-                              //PhotoBloc()..add(PhotoLoadEvent(
-                              //'', 1, true, widget.searchController.text)   );
+                              context.read<PhotoBloc>()..add(PhotoLoadEvent(
+                              '', 1, true, widget.searchController.text)   );
                               //TODO
                               //search.name = widget.searchController.text;
                               //search.setState(() {
@@ -88,12 +89,14 @@ class _PhotosHolderState2 extends State<PhotosHolder2> {
                               //});
                               //TODO
                               //   search.Refresh();
-                              setState(() {});
+                             setState(() {});
                             },
                           ),
                           floating: true,
                           pinned: true,
+                         
                           snap: true,
+                         
                           bottom: new TabBar(
                               //labelPadding: EdgeInsets.all(30),
                               indicatorPadding:
@@ -104,13 +107,14 @@ class _PhotosHolderState2 extends State<PhotosHolder2> {
                               indicatorColor: Colors.pink,
                               tabs: <Tab>[
                                 Tab(
-                                  text: widget.searchController.text, //"Search",
+                                  text:
+                                      widget.searchController.text, //"Search",
                                 ),
                               ])),
                     ];
                   },
                   body: BlocProvider(
-                      create: (context) => PhotoBloc()
+                      create: (context) => pb
                         ..add(new PhotoLoadEvent(
                             '', 1, false, widget.searchController.text)),
                       child:
@@ -170,8 +174,8 @@ class _PhotosHolderState2 extends State<PhotosHolder2> {
                   body: TabBarView(
                     children: <Widget>[
                       BlocProvider(
-                        create: (context) =>
-                            PhotoBloc()..add(PhotoLoadEvent('new', 1, true, '')),
+                        create: (context) => PhotoBloc()
+                          ..add(PhotoLoadEvent('new', 1, true, '')),
                         child: Photos2('new', 2, false, ''),
                       ),
                       BlocProvider(

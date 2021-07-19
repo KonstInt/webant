@@ -1,11 +1,9 @@
+import 'package:flutter_webant/constants.dart';
 import 'package:flutter_webant/models/client_get.dart';
-import 'package:flutter_webant/models/client_post.dart';
 import 'package:flutter_webant/models/token_get.dart';
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
-
-import 'client_provider.dart';
 
 class TokenProvider {
   static Future<TokenGet> getToken(
@@ -27,16 +25,18 @@ class TokenProvider {
         print('OGGGGGGKKKKK');
 
         token = TokenGet.fromMap(json);
+        Constants.refreshToken = token.refresh_token;
+        Constants.token = token.access_token;
 
         return token;
       } else {
         // If the server did not return a 200 OK response,
         // then throw an exception.
 
-        throw ('WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW');
+        throw ('Not 200 OK response token');
       }
     } on SocketException catch (_) {
-      throw ('SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS');
+      throw (SocketException);
     }
   }
 }

@@ -5,7 +5,8 @@ abstract class UserEvent {}
 
 class UserCreateEvent extends UserEvent {
     UserPost user;
-    UserCreateEvent(this.user);
+    String password;
+    UserCreateEvent(this.user, this.password);
 
 }
 class UserLoadEvent extends UserEvent {
