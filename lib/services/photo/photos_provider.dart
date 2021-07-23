@@ -5,7 +5,7 @@ import 'package:flutter_webant/constants.dart';
 import 'package:flutter_webant/models/photo.dart';
 import 'package:http/http.dart' as http;
 
-import '../main.dart';
+import '../../main.dart';
 
 
 class PhotosProvider {

@@ -6,7 +6,8 @@ class CustomTextFiled extends StatefulWidget {
   String RegExpStr;
   String ErrorMessage;
   int minLength;
-  CustomTextFiled(this.text, this.icon, this.RegExpStr, this.ErrorMessage, this.minLength);
+  String data;
+  CustomTextFiled(this.text, this.icon, this.RegExpStr, this.ErrorMessage, this.minLength, this.data);
 
   @override
   _CustomTextFiledState createState() => _CustomTextFiledState();
@@ -31,6 +32,7 @@ class _CustomTextFiledState extends State<CustomTextFiled> {
 
   @override
   Widget build(BuildContext context) {
+    widget.myController.text = widget.data;
     return Container(
       width: double.infinity,
       margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),

@@ -26,6 +26,11 @@ class HiveSave{
       box.put('token', token);
       box.put('refreshToken', refreshToken);
   }
+
+  static SaveAvatar(String avatar) async {
+    var box = await Hive.openBox('Storage');
+    box.put('avatar', avatar);
+  }
  
 
 }

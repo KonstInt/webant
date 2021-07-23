@@ -6,7 +6,7 @@ import 'package:flutter_webant/local_storage/hive_save.dart';
 import 'package:flutter_webant/models/client_post.dart';
 import 'package:flutter_webant/models/user_get.dart';
 import 'package:flutter_webant/models/user_post.dart';
-import 'package:flutter_webant/services/token_provider.dart';
+import 'package:flutter_webant/services/user/token_provider.dart';
 import 'package:http/http.dart' as http;
 
 class UserProviderCreate {

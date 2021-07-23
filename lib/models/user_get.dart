@@ -35,14 +35,14 @@ class UserGet {
 
   factory UserGet.fromMap(Map<String, dynamic> map) {
     return UserGet(
-      id: map['id'],
+      id: map['id'] != null ? map['id'] : 1,
       email: map['email'] != null ? map['email'] :'',
-      enabled: map['enabled'],
+      enabled: map['enabled'] != null ? map['enabled'] :false,
       phone: map['phone'] != null ? map['phone']:'',
       fullName: map['fullName'] != null ? map['fullName'] :'',
       username: map['username'] != null ? map['username'] :'',
       birthday: map['birthday'] != null ? map['birthday'] :'',
-      roles: List<String>.from(map['roles']),
+      roles: map['roles'] == null ? [] : List<String>.from(map['roles']),
     );
   }
 

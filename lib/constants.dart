@@ -14,14 +14,31 @@ class Constants {
   static String myassetFeedName = 'assets/images/news_feed.svg';
   static String myassetProfileName = 'assets/images/profile_icon.svg';
   static String myassetHomeName = 'assets/images/home_icon.svg';
+  static String myassetCameraName = 'assets/images/camera_icon.svg';
+  static String myassetIconAddPhotoName = 'assets/images/photo_add_icon.svg';
+  static String myassetIconAddName = 'assets/images/add_icon.svg';
+
   static late UserGet currentUser;
   static String refreshToken = '';
   static String token = '';
   static String password = '';
+  static String avatar = '';
   static late ClientGet client;
   static bool isInSystem = true;
   
+ 
+static final Widget svgAddPhotoIcon =
+      SvgPicture.asset(myassetIconAddPhotoName, width: 200,);
 
+  static final Widget svgAddIcon =
+      SvgPicture.asset(myassetIconAddName, color: Colors.grey[600]);
+
+  static final Widget svgCameraIcon =
+      SvgPicture.asset(myassetCameraName, color: Colors.grey[600]);
+
+  
+  static final Widget svgCameraIconActive =
+      SvgPicture.asset(myassetCameraName, color: Colors.pink);
 
    static final Widget svgProfileIcon =
       SvgPicture.asset(myassetProfileName, color: Colors.grey[600]);

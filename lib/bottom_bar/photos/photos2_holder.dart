@@ -59,11 +59,14 @@ class _PhotosHolderState2 extends State<PhotosHolder2> {
         child: Scaffold(
           body: widget.isSearched
               ? NestedScrollView(
+                  
                   floatHeaderSlivers: true,
                   headerSliverBuilder:
+                  
                       (BuildContext context, bool innerBoxIsScrolled) {
                     return <Widget>[
                       SliverAppBar(
+                        
                           backgroundColor: Colors.white,
                           title: CupertinoSearchTextField(
                             controller: widget.searchController,
@@ -94,10 +97,11 @@ class _PhotosHolderState2 extends State<PhotosHolder2> {
                           ),
                           floating: true,
                           pinned: true,
-                         
+                         //expandedHeight: 0.0,
                           snap: true,
                          
                           bottom: new TabBar(
+                            
                               //labelPadding: EdgeInsets.all(30),
                               indicatorPadding:
                                   EdgeInsets.symmetric(horizontal: 10),
@@ -105,8 +109,11 @@ class _PhotosHolderState2 extends State<PhotosHolder2> {
                               labelStyle: TextStyle(fontSize: 20),
                               unselectedLabelColor: Colors.grey,
                               indicatorColor: Colors.pink,
+                              
                               tabs: <Tab>[
+                               
                                 Tab(
+                                  //iconMargin: EdgeInsets.all(0),
                                   text:
                                       widget.searchController.text, //"Search",
                                 ),
@@ -127,6 +134,7 @@ class _PhotosHolderState2 extends State<PhotosHolder2> {
                       (BuildContext context, bool innerBoxIsScrolled) {
                     return <Widget>[
                       SliverAppBar(
+                        
                           backgroundColor: Colors.white,
                           // foregroundColor: Colors.black,
                           title: CupertinoSearchTextField(

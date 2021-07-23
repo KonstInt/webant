@@ -74,7 +74,10 @@ class _PhotosState2 extends State<Photos2> {
     type = type[0].toUpperCase() + type.substring(1);
 
     return Scaffold(
-      body: Column(children: [
+      
+      body: Column(
+        
+        children: [
         widget.showHeader
             ? AppBar(
                 title: Text(type,
@@ -99,7 +102,7 @@ class _PhotosState2 extends State<Photos2> {
           child: BlocBuilder<PhotoBloc, PhotoState>(builder: (context, state) {
             return SafeArea(
               child: Container(
-                //margin: EdgeInsets.only(top: 48),
+                margin: EdgeInsets.only(top: 0),
                 color: Colors.white,
                 child: SmartRefresher(
                   enablePullDown: true,

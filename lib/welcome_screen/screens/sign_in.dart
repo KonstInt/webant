@@ -24,7 +24,7 @@ class SignIn extends StatefulWidget {
       Constants.mailIcon,
       r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
       'Enter your real email address',
-      0);
+      0, '');
 
   CustomPasswordField password = CustomPasswordField(
       "Password*", r"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$");

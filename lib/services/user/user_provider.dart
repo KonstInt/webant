@@ -4,11 +4,12 @@ import 'package:flutter_webant/local_storage/hive_save.dart';
 import 'package:flutter_webant/models/client_get.dart';
 import 'package:flutter_webant/models/client_post.dart';
 import 'package:flutter_webant/models/user_get.dart';
-import 'package:flutter_webant/services/client_provider.dart';
-import 'package:flutter_webant/services/token_provider.dart';
+import 'package:flutter_webant/services/user/client_provider.dart';
+import 'package:flutter_webant/services/user/token_provider.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 
-import '../constants.dart';
+import '../../constants.dart';
 
 class UserProvider {
   static Future<UserGet> getUser(String username, String password,
@@ -35,6 +36,8 @@ class UserProvider {
         print('Ok');
         user = UserGet.fromMap(json);
         HiveSave.FullSave(user, password, Constants.token, Constants.refreshToken, true, Constants.client);
+        Constants.currentUser = user;
+        Constants.currentUser.birthday = DateFormat('dd.MM.yyyy').format(DateTime.parse(Constants.currentUser.birthday));
         return user;
       }
       if (response.statusCode == 401) {

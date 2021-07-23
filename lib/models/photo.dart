@@ -6,6 +6,7 @@ class Photo {
   final bool? isNew;
   final bool? isPopular;
   final ServImage image;
+  final String user;
   
   Photo(
       {required this.id,
@@ -14,7 +15,8 @@ class Photo {
       required this.description,
       required this.isNew,
       required this.isPopular,
-      required this.image});
+      required this.image,
+      required this.user});
 
  
   factory Photo.fromJson(Map<String, dynamic> json) {
@@ -26,7 +28,10 @@ class Photo {
 
         isNew: json['new'],
         isPopular: json['popular'],
-        image: new ServImage(json['image']['id'], json['image']['name']));
+        image: new ServImage(json['image']['id'], json['image']['name']),
+        user: json['user'] != null ? json['user'] : ''
+        );
+        
   }
 }
 

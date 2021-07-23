@@ -1,28 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_webant/welcome_screen/screens/welcome_screen.dart';
+import 'package:flutter_webant/local_storage/hive_save.dart';
 import 'package:flutter_webant/widgets/custom_pass_with_confim.dart';
 import 'package:flutter_webant/widgets/custom_password_field.dart';
 import 'package:flutter_webant/widgets/custom_text_field.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:intl/intl.dart';
-
+import 'dart:io';
+import 'package:path/path.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../constants.dart';
 
 class UserSettings extends StatefulWidget {
   bool isObscure = true;
   bool isObscure2 = true;
-  final dateController = TextEditingController();
+  final dateController =
+      TextEditingController(text: Constants.currentUser.birthday);
+
   CustomTextFiled username = CustomTextFiled(
       'Username*',
       Constants.usernameIcon,
       r"^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]$",
       "User name not defind",
-      5);
+      5,
+      Constants.currentUser.username);
   CustomTextFiled email = CustomTextFiled(
       'Email*',
       Constants.mailIcon,
       r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
       'Enter your real email address',
-      0);
+      0,
+      Constants.currentUser.email);
   CustomPasswordField password = new CustomPasswordField(
       'Old Password', r"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$");
   //CustomPasswordField password = CustomPasswordField("Password*", r"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$");
@@ -34,8 +42,52 @@ class UserSettings extends StatefulWidget {
 }
 
 class _UserSettingsState extends State<UserSettings> {
+  XFile? _image;
+
+  var userInfo = FirebaseFirestore.instance
+      .collection('users')
+      .doc(Constants.currentUser.id.toString());
+
+  Future<void> addAvatar() {
+    // Call the user's CollectionReference to add a new user
+    return userInfo.set({
+          'avatar': Constants.avatar, // John Doe
+        })
+        .then((value) => print("Sucsess"))
+        .catchError((error) => print("Failed to add user: $error"));
+  }
+
   @override
   Widget build(BuildContext context) {
+    //var user = FirebaseFirestore.instance.collection('user').doc(Constants.currentUser.id.toString());
+    Future getImage() async {
+      XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
+
+      setState(() {
+        _image = image;
+        print('Image Path $_image');
+      });
+    }
+
+    Future uploadPic(BuildContext context) async {
+      //String fileName = basename(_image!.path);
+      var firebaseStorageRef = FirebaseStorage.instance
+          .ref()
+          .child(Constants.currentUser.id.toString())
+          .child('avatar');
+      var uploadTask = firebaseStorageRef.putFile(File(_image!.path));
+      var taskSnapshot = await uploadTask.whenComplete(() {});
+      Constants.avatar = await taskSnapshot.ref.getDownloadURL();
+      HiveSave.SaveAvatar(Constants.avatar);
+
+      setState(() {
+        print("Profile Picture uploaded");
+        Scaffold.of(context)
+            .showSnackBar(SnackBar(content: Text('Profile Picture Uploaded')));
+      });
+    }
+
+    //widget.dateController.text = Constants.currentUser.birthday;
     return GestureDetector(
       onTap: () {
         FocusScopeNode currentFocus = FocusScope.of(context);
@@ -49,6 +101,16 @@ class _UserSettingsState extends State<UserSettings> {
           title: Text('Settings'),
           backgroundColor: Colors.white,
           iconTheme: IconThemeData(color: Colors.black),
+          actions: [
+            Container(
+                margin: EdgeInsets.only(top: 5),
+                child: TextButton(
+                    onPressed: () {
+                      uploadPic(context);
+                      addAvatar();
+                    },
+                    child: Text('Save')))
+          ],
           bottom: PreferredSize(
               child: Container(
                 color: Colors.grey[600],
@@ -64,12 +126,41 @@ class _UserSettingsState extends State<UserSettings> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
-                    margin: EdgeInsets.only(top: 25, bottom:10),
-                    child: CircleAvatar(
-                      radius: 65,
-                      backgroundImage: ExactAssetImage(
-                          'assets/images/user_without_photo.png'),
-                      backgroundColor: Colors.transparent,
+                    margin: EdgeInsets.only(top: 25, bottom: 10),
+                    child: GestureDetector(
+                      onTap: () {
+                        getImage();
+                      },
+                      child: CircleAvatar(
+                        radius: 65,
+                        child: ClipOval(
+                            child: new SizedBox(
+                          width: 180.0,
+                          height: 180.0,
+                          child: (_image != null)
+                              ? Image.file(
+                                  File(_image!.path),
+                                  fit: BoxFit.fill,
+                                )
+                              : Constants.avatar != ''
+                                  ? Image.network(
+                                      Constants.avatar,
+                                      fit: BoxFit.fill,
+                                      errorBuilder:
+                                          (context, error, stackTrace) {
+                                        return Image.asset(
+                                            'assets/images/user_without_photo.png');
+                                      },
+                                    )
+                                  : Image.asset(
+                                      'assets/images/user_without_photo.png',
+                                      fit: BoxFit.fill,
+                                    ),
+                          //),
+                          //
+                        )),
+                        backgroundColor: Colors.transparent,
+                      ),
                     )),
                 Container(
                     padding: EdgeInsets.only(bottom: 10),
@@ -78,9 +169,6 @@ class _UserSettingsState extends State<UserSettings> {
                             fontSize: 12,
                             color: Colors.grey,
                             fontWeight: FontWeight.w300))),
-
-
-
                 Container(
                     width: double.infinity,
                     padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
@@ -106,6 +194,8 @@ class _UserSettingsState extends State<UserSettings> {
                               BoxConstraints(minHeight: 24, minWidth: 35),
                           border: OutlineInputBorder(),
                           labelText: 'Birthday',
+                          //hintText: 'dddddddd',
+
                           suffixIcon: Constants.calendarIcon),
                       onTap: () async {
                         var date = await showDatePicker(
@@ -114,6 +204,7 @@ class _UserSettingsState extends State<UserSettings> {
                           firstDate: DateTime(1900),
                           lastDate: DateTime.now(),
                         );
+                        //Constants.currentUser.birthday =  DateFormat('dd.MM.yyyy').format(date!);
                         widget.dateController.text =
                             DateFormat('dd.MM.yyyy').format(date!);
                       },
@@ -144,9 +235,7 @@ class _UserSettingsState extends State<UserSettings> {
                       backgroundColor: Colors.black,
                       primary: Colors.orange,
                     ),
-                    onPressed: () {
-                      //UserGet myUser;
-                    },
+                    onPressed: () {},
                     child:
                         Text("Sign Up", style: TextStyle(color: Colors.white)),
                   ),

@@ -6,6 +6,7 @@ import 'package:flutter_webant/root_page.dart';
 import 'package:flutter_webant/welcome_screen/screens/welcome_screen.dart';
 
 import 'bloc/user_bloc/user_bloc.dart';
+import 'bottom_bar/add_photo/photo_add.dart';
 import 'bottom_bar/photos/photos2_holder.dart';
 import 'bottom_bar/profile/screens/user_profile.dart';
 
@@ -15,7 +16,7 @@ class MyHomePage extends StatefulWidget {
 
   final List<Widget> screens = [
     //Photos('new'),
-    PhotosHolder2(), WelcomeScreen(), UserProfile()
+    PhotosHolder2(), PhotoAdd(), UserProfile()
   ];
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -47,8 +48,8 @@ class _MyHomePageState extends State<MyHomePage> {
               title: Padding(padding: EdgeInsets.all(0)),
             ),
             BottomNavigationBarItem(
-                icon: Constants.svgFeedIcon,
-                activeIcon: Constants.svgFeedIconActive,
+                icon: Constants.svgCameraIcon,
+                activeIcon: Constants.svgCameraIconActive,
                 title: Padding(padding: EdgeInsets.all(0)),),
             BottomNavigationBarItem(
                 icon: Constants.svgProfileIcon,
@@ -64,14 +65,4 @@ class _MyHomePageState extends State<MyHomePage> {
     else
       return WelcomeScreen();
   }
-}
-Widget Navigation() {
-  return Scaffold(
-      body: BlocProvider(
-          create: (context) => UserBloc()
-            ..add(new UserLoadEvent(
-                Constants.currentUser.email, Constants.password)),
-          child:
-              //search
-              RootPage('auto')));
 }

@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
+import '../../../constants.dart';
+
 class HeaderProfile extends StatefulWidget {
   _HeaderProfileState createState() => _HeaderProfileState();
 }
@@ -18,13 +20,33 @@ class _HeaderProfileState extends State<HeaderProfile> {
         Container(
           margin: EdgeInsets.all(25),
           child: CircleAvatar(
-            radius: 65,
-            backgroundImage: ExactAssetImage('assets/images/user_without_photo.png'),
-            backgroundColor: Colors.transparent,
-          )),
-        Text('Username', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                        radius: 65,
+                        child: ClipOval(
+                            child: new SizedBox(
+                          width: 180.0,
+                          height: 180.0,
+                          child: Constants.avatar != ''
+                                  ? Image.network(
+                                      Constants.avatar,
+                                      fit: BoxFit.fill,
+                                      errorBuilder:
+                                          (context, error, stackTrace) {
+                                        return Image.asset(
+                                            'assets/images/user_without_photo.png');
+                                      },
+                                    )
+                                  : Image.asset(
+                                      'assets/images/user_without_photo.png',
+                                      fit: BoxFit.fill,
+                                    ),
+                          //),
+                          //
+                        )),
+                        backgroundColor: Colors.transparent,
+                      ),),
+        Text(Constants.currentUser.username, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
         SizedBox(height: 5),
-        Text('1.01.1111', style: TextStyle(fontWeight: FontWeight.w300, fontSize: 15)),
+        Text(Constants.currentUser.birthday, style: TextStyle(fontWeight: FontWeight.w300, fontSize: 15)),
         Spacer(), 
         Container(
           margin: EdgeInsets.only(left: 10,  top: 20),
