@@ -25,7 +25,7 @@ class GetUser {
         throw ('WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW');
       }
     } on SocketException catch (_) {
-      throw ('SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS');
+      throw (SocketException);
     }
   }
 }
