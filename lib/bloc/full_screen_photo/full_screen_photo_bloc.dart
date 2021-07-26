@@ -22,13 +22,12 @@ class FullScreenPhotoBloc extends Bloc<FullScreenPhotoEvent, FullScreenPhotoStat
         var user = await GetUser.getUser(event.path);
         yield FullScreenPhotoLoadedState(user);
 
-
       }
       catch(e){
         if (e == SocketException)
           yield FullScreenPhotoNoInternetState();
         else
-          yield FullScreenPhotoNotAccesState();
+          yield FullScreenPhotoErrorState();
       }
     }
     // TODO: implement mapEventToState

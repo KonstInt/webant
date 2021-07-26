@@ -5,6 +5,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_webant/bloc/photo_bloc/photo_bloc.dart';
+import 'package:flutter_webant/bottom_bar/photos/screens/full_screen_image_build.dart';
 
 import 'package:flutter_webant/constants.dart';
 import 'package:flutter_webant/models/photo.dart';
@@ -100,8 +101,7 @@ class _PhotosState2 extends State<Photos2> {
             // TODO: implement listener
           },
           child: BlocBuilder<PhotoBloc, PhotoState>(builder: (context, state) {
-            return SafeArea(
-              child: Container(
+            return Container(
                 margin: EdgeInsets.only(top: 0),
                 color: Colors.white,
                 child: SmartRefresher(
@@ -196,7 +196,7 @@ class _PhotosState2 extends State<Photos2> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          FullScreenImage(_photos[index])));
+                                          FullScreenImageBuild(_photos[index])));
                             },
                           );
                         },
@@ -213,7 +213,7 @@ class _PhotosState2 extends State<Photos2> {
                     }
                   }()),
                 ),
-              ),
+              
             );
           }),
         )),

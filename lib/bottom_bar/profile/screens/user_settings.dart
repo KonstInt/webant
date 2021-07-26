@@ -82,8 +82,9 @@ class _UserSettingsState extends State<UserSettings> {
 
       setState(() {
         print("Profile Picture uploaded");
-        Scaffold.of(context)
-            .showSnackBar(SnackBar(content: Text('Profile Picture Uploaded')));
+         ScaffoldMessenger.of(context).showSnackBar(new SnackBar(
+                content: new Text("Data is update!"),
+              ));
       });
     }
 

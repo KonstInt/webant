@@ -9,7 +9,7 @@ class FullScreenPhotoInitial extends FullScreenPhotoState {}
 class FullScreenPhotoLoadingState extends FullScreenPhotoState {}
 
 class FullScreenPhotoLoadedState extends FullScreenPhotoState{
-  UserGet user;
+  UserGet? user;
   FullScreenPhotoLoadedState(this.user);
 
 }
@@ -17,6 +17,6 @@ class FullScreenPhotoLoadedState extends FullScreenPhotoState{
 class FullScreenPhotoNoInternetState extends FullScreenPhotoState{
   
 }
-class FullScreenPhotoNotAccesState extends FullScreenPhotoState{
+class FullScreenPhotoErrorState extends FullScreenPhotoState{
   
 }
