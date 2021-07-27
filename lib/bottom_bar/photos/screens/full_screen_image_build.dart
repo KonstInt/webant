@@ -21,7 +21,7 @@ class _FullScreenImageBuildState extends State<FullScreenImageBuild> {
       
       body: BlocProvider(
           create: (context) => FullScreenPhotoBloc()
-            ..add(new FullScreenPhotoLoadEvent(widget.photo.user
+            ..add(new FullScreenPhotoLoadEvent(widget.photo
                 )),
           child:
           //df;dfd;f,d;

@@ -39,6 +39,16 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       yield UserLoadingState();
       try {
 
+        
+
+        final UserGet user = await UserProvider.getUser(
+            event.username,
+            event.password,
+            new ClientPost(
+                name: 'flutter',
+                allowedGrantTypes: ["password", "refresh_token"]),
+            'password');
+        Constants.currentUser = user;
         try{
         var userInfo = FirebaseFirestore.instance
             .collection('users')
@@ -53,15 +63,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         catch(_){
 
         }
-
-        final UserGet user = await UserProvider.getUser(
-            event.username,
-            event.password,
-            new ClientPost(
-                name: 'flutter',
-                allowedGrantTypes: ["password", "refresh_token"]),
-            'password');
-        Constants.currentUser = user;
         yield UserLoadedState(user);
       } catch (e) {
         if (e == SocketException)

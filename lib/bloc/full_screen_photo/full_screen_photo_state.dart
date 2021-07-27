@@ -10,7 +10,8 @@ class FullScreenPhotoLoadingState extends FullScreenPhotoState {}
 
 class FullScreenPhotoLoadedState extends FullScreenPhotoState{
   UserGet? user;
-  FullScreenPhotoLoadedState(this.user);
+  int seens;
+  FullScreenPhotoLoadedState(this.user, this.seens);
 
 }
 

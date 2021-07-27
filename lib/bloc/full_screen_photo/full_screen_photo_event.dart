@@ -4,6 +4,7 @@ part of 'full_screen_photo_bloc.dart';
 abstract class FullScreenPhotoEvent {}
 
 class FullScreenPhotoLoadEvent extends FullScreenPhotoEvent{
-  String path;
-  FullScreenPhotoLoadEvent(this.path);
+  Photo photo;
+
+  FullScreenPhotoLoadEvent(this.photo);
 }

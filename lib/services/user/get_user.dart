@@ -25,10 +25,10 @@ class GetUser {
         // If the server did not return a 200 OK response,
         // then throw an exception.
 
-        throw ('WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW');
+       return null;
       }
     } on SocketException catch (_) {
-      throw (SocketException);
+      return null;
     }
   }
 }
