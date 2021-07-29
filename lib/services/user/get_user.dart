@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
-import 'package:flutter_webant/models/user_get.dart';
+import 'package:flutter_webant/models/user/user_get.dart';
 
 import '../../constants.dart';
 

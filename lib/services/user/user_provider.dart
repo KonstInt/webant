@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter_webant/local_storage/hive_save.dart';
-import 'package:flutter_webant/models/client_get.dart';
-import 'package:flutter_webant/models/client_post.dart';
-import 'package:flutter_webant/models/user_get.dart';
+import 'package:flutter_webant/models/user/client/client_get.dart';
+import 'package:flutter_webant/models/user/client/client_post.dart';
+import 'package:flutter_webant/models/user/user_get.dart';
 import 'package:flutter_webant/services/user/client_provider.dart';
 import 'package:flutter_webant/services/user/token_provider.dart';
 import 'package:http/http.dart' as http;
@@ -40,9 +40,11 @@ class UserProvider {
         Constants.currentUser.birthday = DateFormat('dd.MM.yyyy').format(DateTime.parse(Constants.currentUser.birthday));
         return user;
       }
-      if (response.statusCode == 401) {
+     if (response.statusCode == 401) {
         return getUser(username, Constants.refreshToken, clientPost, 'refresh_token');
-      } else {
+      } 
+     else {
+       
         throw ('Not 200 or 401');
       }
     } on SocketException catch (_) {

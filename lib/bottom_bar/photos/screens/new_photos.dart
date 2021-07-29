@@ -8,7 +8,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 
 import 'package:flutter_webant/constants.dart';
-import 'package:flutter_webant/models/photo.dart';
+import 'package:flutter_webant/models/photo/photo.dart';
 
 
 import 'package:pull_to_refresh/pull_to_refresh.dart';

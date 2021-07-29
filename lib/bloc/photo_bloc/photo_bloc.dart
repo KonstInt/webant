@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
-import 'package:flutter_webant/models/photo.dart';
+import 'package:flutter_webant/models/photo/photo.dart';
 
 import 'package:flutter_webant/services/photo/photos_provider.dart';
 

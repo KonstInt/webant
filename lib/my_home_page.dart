@@ -8,6 +8,7 @@ import 'package:flutter_webant/welcome_screen/screens/welcome_screen.dart';
 import 'bloc/user_bloc/user_bloc.dart';
 import 'bottom_bar/add_photo/photo_add.dart';
 import 'bottom_bar/add_photo/photo_add2.dart';
+import 'bottom_bar/add_photo/root_add.dart';
 import 'bottom_bar/photos/photos2_holder.dart';
 import 'bottom_bar/profile/screens/user_profile.dart';
 
@@ -17,7 +18,7 @@ class MyHomePage extends StatefulWidget {
 
   final List<Widget> screens = [
     //Photos('new'),
-    PhotosHolder2(), PhotoAdd2(), UserProfile()
+    PhotosHolder2(), PhotoAdd(), UserProfile()
   ];
   @override
   _MyHomePageState createState() => _MyHomePageState();

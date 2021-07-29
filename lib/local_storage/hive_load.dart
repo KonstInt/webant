@@ -1,5 +1,5 @@
-import 'package:flutter_webant/models/client_get.dart';
-import 'package:flutter_webant/models/user_get.dart';
+import 'package:flutter_webant/models/user/client/client_get.dart';
+import 'package:flutter_webant/models/user/user_get.dart';
 import 'package:hive/hive.dart';
 
 class HiveLoad {

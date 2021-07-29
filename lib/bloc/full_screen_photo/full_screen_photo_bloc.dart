@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
-import 'package:flutter_webant/models/photo.dart';
-import 'package:flutter_webant/models/user_get.dart';
+import 'package:flutter_webant/models/photo/photo.dart';
+import 'package:flutter_webant/models/user/user_get.dart';
 import 'package:flutter_webant/services/user/get_user.dart';
 import 'package:meta/meta.dart';
 

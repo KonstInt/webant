@@ -8,7 +8,7 @@ import 'package:flutter_webant/bloc/photo_bloc/photo_bloc.dart';
 import 'package:flutter_webant/bottom_bar/photos/screens/full_screen_image_build.dart';
 
 import 'package:flutter_webant/constants.dart';
-import 'package:flutter_webant/models/photo.dart';
+import 'package:flutter_webant/models/photo/photo.dart';
 
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 

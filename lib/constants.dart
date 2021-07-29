@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import 'models/client_get.dart';
-import 'models/user_get.dart';
+import 'models/user/client/client_get.dart';
+import 'models/user/user_get.dart';
+
+
+import 'package:flutter/services.dart';
 
 class Constants {
   static String noInternetPicturePath = 'assets/images/no_internet.png';
@@ -70,5 +73,11 @@ static final Widget svgAddPhotoIcon =
   static final Widget mailIcon = SvgPicture.asset(_myassetMailName,
       color: Colors.grey[600], height: 2, width: 2);
 
+  static const MethodChannel _channel = const MethodChannel('storage_path');
+
+  static Future<String> get imagesPath async {
+    final String data = await _channel.invokeMethod('getImagesPath');
+    return data;
+  }
 
 }

@@ -1,6 +1,6 @@
 import 'package:flutter_webant/constants.dart';
-import 'package:flutter_webant/models/client_get.dart';
-import 'package:flutter_webant/models/token_get.dart';
+import 'package:flutter_webant/models/user/client/client_get.dart';
+import 'package:flutter_webant/models/user/token/token_get.dart';
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;

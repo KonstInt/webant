@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_webant/bloc/user_bloc/user_bloc.dart';
-import 'package:flutter_webant/models/user_post.dart';
+import 'package:flutter_webant/models/user/user_post.dart';
 import 'package:flutter_webant/root_page.dart';
 import 'package:flutter_webant/welcome_screen/screens/sign_in.dart';
 import 'package:flutter_webant/welcome_screen/screens/welcome_screen.dart';

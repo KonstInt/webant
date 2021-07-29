@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_webant/bloc/full_screen_photo/full_screen_photo_bloc.dart';
-import 'package:flutter_webant/models/photo.dart';
+import 'package:flutter_webant/models/photo/photo.dart';
 
 import '../../../constants.dart';
 
