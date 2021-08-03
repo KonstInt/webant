@@ -9,9 +9,18 @@ class UserCreateEvent extends UserEvent {
     UserCreateEvent(this.user, this.password);
 
 }
-class UserLoadEvent extends UserEvent {
+class UserSignInEvent extends UserEvent {
     String username;
     String password;
-    UserLoadEvent(this.username, this.password);
+    UserSignInEvent(this.username, this.password);
+
+}
+
+
+class UserLoadEvent extends UserEvent {
+  
+}
+class UserLoadSettingsEvent extends UserEvent {
+
 
 }

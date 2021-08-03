@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:intl/intl.dart';
+
 class UserGet {
   int id;
   String email;
@@ -41,7 +43,7 @@ class UserGet {
       phone: map['phone'] != null ? map['phone']:'',
       fullName: map['fullName'] != null ? map['fullName'] :'',
       username: map['username'] != null ? map['username'] :'',
-      birthday: map['birthday'] != null ? map['birthday'] :'',
+      birthday: map['birthday'] != null ? map['birthday']:'',
       roles: map['roles'] == null ? [] : List<String>.from(map['roles']),
     );
   }

@@ -1,10 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_webant/models/user/user_get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../constants.dart';
 
 class HeaderProfile extends StatefulWidget {
+  UserGet user;
+  String avatar;
+  HeaderProfile(this.user, this.avatar);
   _HeaderProfileState createState() => _HeaderProfileState();
 }
 

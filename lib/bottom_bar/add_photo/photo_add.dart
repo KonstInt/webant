@@ -22,6 +22,14 @@ class PhotoAdd extends StatefulWidget {
 
 class _PhotoAddState extends State<PhotoAdd> {
   XFile? _image;
+  late PhotoAddBloc photoBloc;
+
+  @override
+  void initState() { 
+    photoBloc = PhotoAddBloc();
+    super.initState();
+    
+  }
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
@@ -95,10 +103,10 @@ class _PhotoAddState extends State<PhotoAdd> {
                     MaterialPageRoute(
                       builder: (BuildContext context) => BlocProvider(
                           create: (context) => PhotoAddBloc()
-                            ..add(new PhotoAddLoadEvent(
-                              new PhotoPost(
+                            ..add(PhotoAddLoadEvent(
+                              PhotoPost(
                                   name: widget.nameController.text,
-                                  dateCreate: '',
+                                  dateCreate: DateTime.now().toString(),
                                   description:
                                       widget.descriptionController.text,
                                   isNew: true,

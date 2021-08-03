@@ -33,13 +33,14 @@ class _PhotoAddBuilderState extends State<PhotoAddBuilder> {
 
         if (state is PhotoAddLoadedState) {
           Constants.isInSystem = true;
-          Navigator.pushAndRemoveUntil(
+          /*Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
-              builder: (BuildContext context) => MyHomePage(),
+              builder: (BuildContext context) => MyHomePage().,
             ),
             (route) => false,
-          );
+          );*/
+          Navigator.pop(context);
         }
         if (state is PhotoAddNoInternetState) {
           Constants.isInSystem = true;

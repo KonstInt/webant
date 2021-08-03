@@ -5,7 +5,7 @@ import 'package:hive/hive.dart';
 class HiveLoad {
   static Future<UserGet> getUser() async {
     var box = await Hive.openBox('Storage');
-    String json = box.get('current user') == null ? ' ' : box.get('current user');
+    String json = box.get('user') == null ? ' ' : box.get('user');
     if(json != ' ')
     return UserGet.fromJson(json);
     else
@@ -20,6 +20,8 @@ class HiveLoad {
     else
     return ClientGet(id: 0, name: '', randomId: '', secret: '', allowedGrantTypes: []);
   }
+
+  
 
   static Future<String> getPassword() async {
     var box = await Hive.openBox('Storage');

@@ -5,7 +5,7 @@ import 'package:hive/hive.dart';
 class HiveSave{
 
   
-    static FullSave(UserGet user, String password, String token, String refreshToken, bool inSystem, ClientGet? client) async {
+    static fullSave(UserGet user, String password, String token, String refreshToken, bool inSystem, ClientGet? client) async {
      
      var box = await Hive.openBox('Storage');
      box.put('current user', user.toJson());
@@ -21,16 +21,30 @@ class HiveSave{
      box.close();
     }
 
-  static SaveTokens(String token, String refreshToken) async {
+  static saveTokens(String? token, String? refreshToken) async {
       var box = await Hive.openBox('Storage');
+      if(token!=null)
       box.put('token', token);
+      if(refreshToken!= null)
       box.put('refreshToken', refreshToken);
   }
 
-  static SaveAvatar(String avatar) async {
+  static saveAvatar(String avatar) async {
     var box = await Hive.openBox('Storage');
     box.put('avatar', avatar);
   }
+
+  static saveUser(String user) async {
+    var box = await Hive.openBox('Storage');
+    box.put('user', user);
+  }
+
+  static saveClient(String client) async {
+    var box = await Hive.openBox('Storage');
+    box.put('client', client);
+  }
+
+
  
 
 }

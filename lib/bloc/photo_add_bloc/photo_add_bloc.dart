@@ -31,6 +31,9 @@ class PhotoAddBloc extends Bloc<PhotoAddEvent, PhotoAddState> {
           yield PhotoAddNotAccesState();
       }
     }
+    if(event is PhotoStateEvent){
+      yield PhotoAddInitial();
+    }
     // TODO: implement mapEventToState
   }
 }

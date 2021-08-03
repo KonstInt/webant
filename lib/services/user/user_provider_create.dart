@@ -4,6 +4,7 @@ import 'package:flutter_webant/local_storage/hive_save.dart';
 import 'package:flutter_webant/models/user/user_get.dart';
 import 'package:flutter_webant/models/user/user_post.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 
 class UserProviderCreate {
   static Future<UserGet> getUser(UserPost userPost, String password) async {
@@ -18,7 +19,9 @@ class UserProviderCreate {
         print('OGGGGGGKKKKK');
 
         user = UserGet.fromMap(json);
-        HiveSave.FullSave(user, password, '', '', true, null);
+        user.birthday = DateFormat('dd.MM.yyyy').format(DateTime.parse(user.birthday));
+        HiveSave.saveUser(user.toJson());
+        HiveSave.fullSave(user, password, '', '', true, null);
         return user;
       } else {
         // If the server did not return a 200 OK response,

@@ -120,7 +120,7 @@ class _SignInState extends State<SignIn> {
                           MaterialPageRoute(
                             builder: (BuildContext context) => BlocProvider(
                       create: (context) => UserBloc()
-                        ..add(new UserLoadEvent(widget.email.getText(), widget.password.getText())),
+                        ..add(new UserSignInEvent(widget.email.getText(), widget.password.getText())),
                       child:
                           //search
                           RootPage('')),

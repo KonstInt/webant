@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:flutter_webant/models/user/user_get.dart';
+import 'package:intl/intl.dart';
 
 import '../../constants.dart';
 
@@ -17,6 +18,8 @@ class GetUser {
           print('OGGGGGGKKKKK');
 
           var user = UserGet.fromMap(json);
+          user.birthday =
+              DateFormat('dd.MM.yyyy').format(DateTime.parse(user.birthday));
           return user;
         } catch (_) {
           return null;
@@ -25,7 +28,7 @@ class GetUser {
         // If the server did not return a 200 OK response,
         // then throw an exception.
 
-       return null;
+        return null;
       }
     } on SocketException catch (_) {
       return null;
