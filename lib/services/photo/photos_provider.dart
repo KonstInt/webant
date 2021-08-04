@@ -11,12 +11,15 @@ import '../../main.dart';
 class PhotosProvider {
 
   
-  static Future<List<Photo>> getPhotos(String type, int page, String name) async {
+  static Future<List<Photo>> getPhotos(String type, int page, String data) async {
     
   
     final List<Photo> photos = [];
-    
-    final String adress = 'http://gallery.dev.webant.ru/api/photos?$type=true&name=$name&page=$page&limit=20';
+    final String adress;
+    if(type == 'id')
+     adress = 'http://gallery.dev.webant.ru/api/photos?user.id=$data&page=$page&limit=20';
+    else
+      adress = 'http://gallery.dev.webant.ru/api/photos?$type=true&name=$data&page=$page&limit=20';
     try {
       final response = await http.get(
           Uri.parse(adress),

@@ -45,7 +45,13 @@ class UserProvider {
         }
       });
       return model != null ? model : throw ('not sucsess');
-    } catch (e) {
+    } 
+    catch (e) {
+      if(e is DioError)
+      {
+          if(e.message.contains('SocketException'))
+            throw (SocketException);
+      }
       throw (e);
     } 
   }

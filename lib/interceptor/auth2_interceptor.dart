@@ -23,9 +23,12 @@ class TokenInterceptor2 extends Interceptor {
 
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) async {
-    if ((err.error as String).contains('401')) {
+    
+    try{
+    if(err.response != null)
+    {if (err.response!.statusCode == 401) {
       String token = await HiveLoad.getRefreshToken();
-
+      
       if (token != '') {
         ClientGet client = await HiveLoad.getClient();
         String refreshToken = await HiveLoad.getRefreshToken();
@@ -48,7 +51,15 @@ class TokenInterceptor2 extends Interceptor {
       } else {
         handler.reject(err);
       }
+    }}
+    else{
+       handler.next(err);
+    }}
+    catch(e){
+      throw(e);
     }
+   
+    
 
     super.onError(err, handler);
   }

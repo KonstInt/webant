@@ -16,7 +16,7 @@ class PhotoAddProvider {
       int? id = getObject.id;
       photo.image = '/api/media_objects/$id';
       Dio dio = new Dio();
-      dio.interceptors.add(TokenInterceptor2(dio:dio));
+      dio.interceptors.add(TokenInterceptor2(dio: dio));
       String token = await HiveLoad.getToken();
       Photo? model = await dio
           .post("http://gallery.dev.webant.ru/api/photos",
@@ -33,10 +33,10 @@ class PhotoAddProvider {
         }
       }).catchError((error) => throw (error));
       return model != null ? model : throw ('not sucsess');
-    } catch (e) {
-      throw (e);
     } on SocketException catch (_) {
       throw (SocketException);
+    } catch (e) {
+      throw (e);
     }
   }
 }

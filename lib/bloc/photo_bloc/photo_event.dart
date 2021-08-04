@@ -8,7 +8,7 @@ class PhotoLoadEvent extends PhotoEvent{
   final int page;
   final bool first;
   final String name;
-  PhotoLoadEvent(this.type, this.page, this.first, this.name);
+  PhotoLoadEvent(this.type, this.page, this.first, this.name, );
 
 
 }

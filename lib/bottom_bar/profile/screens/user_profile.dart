@@ -70,8 +70,8 @@ class _UserProfileState extends State<UserProfile> {
         },
         body: BlocProvider(
           create: (context) =>
-              PhotoBloc()..add(PhotoLoadEvent('new', 1, true, '')),
-          child: Photos2('new', 4, false, ''),
+              PhotoBloc()..add(PhotoLoadEvent('id', 1, true, widget.user.id.toString())),
+          child: Photos2('id', 4, false, widget.user.id.toString()),
         ),
       ),
     );

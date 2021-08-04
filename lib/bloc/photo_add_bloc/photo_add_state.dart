@@ -8,10 +8,16 @@ class PhotoAddInitial extends PhotoAddState {}
 class PhotoAddLoadingState extends PhotoAddState {}
 
 class PhotoAddLoadedState extends PhotoAddState {
+  UserGet user;
+  String avatar;
   Photo photo;
-  PhotoAddLoadedState(this.photo);
+  PhotoAddLoadedState(this.photo, this.avatar, this.user);
 }
 
 class PhotoAddNotAccesState extends PhotoAddState {}
 
-class PhotoAddNoInternetState extends PhotoAddState {}
+class PhotoAddNoInternetState extends PhotoAddState {
+  UserGet user;
+  String avatar;
+  PhotoAddNoInternetState(this.avatar, this.user);
+}

@@ -28,8 +28,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       var userInfo = FirebaseFirestore.instance
           .collection('users')
           .doc(user.id.toString());
-      await userInfo.get().then<dynamic>((DocumentSnapshot snapshot) {
-        HiveSave.saveAvatar(snapshot.get('avatar'));
+      await userInfo.get().then<dynamic>((DocumentSnapshot snapshot) async {
+        await HiveSave.saveAvatar(snapshot.get('avatar'));
       });
     } catch (_) {}
     return await HiveLoad.getAvatar();

@@ -1,0 +1,194 @@
+Date : 2021-08-03 17:25:48
+Directory : c:\Users\Kostya\Desktop\webant
+Total : 100 files,  4226 codes, 264 comments, 659 blanks, all 5149 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| Dart       |         60 |      3,409 |        164 |        576 |      4,149 |
+| XML        |         23 |        300 |         38 |         15 |        353 |
+| JSON       |          5 |        228 |          0 |          4 |        232 |
+| HTML       |          1 |         90 |         14 |          5 |        109 |
+| Groovy     |          3 |         83 |          3 |         19 |        105 |
+| YAML       |          1 |         44 |         44 |         20 |        108 |
+| CSS        |          1 |         38 |          0 |          6 |         44 |
+| Markdown   |          2 |         13 |          0 |          9 |         22 |
+| Swift      |          1 |         12 |          0 |          2 |         14 |
+| Properties |          2 |          8 |          1 |          2 |         11 |
+| C++        |          1 |          1 |          0 |          1 |          2 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                          | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                             |        100 |      4,226 |        264 |        659 |      5,149 |
+| android                                                                                                       |         13 |        191 |         39 |         23 |        253 |
+| android\app                                                                                                   |          9 |        149 |         38 |         12 |        199 |
+| android\app\src                                                                                               |          7 |         61 |         35 |          2 |         98 |
+| android\app\src\debug                                                                                         |          1 |          4 |          3 |          1 |          8 |
+| android\app\src\main                                                                                          |          5 |         53 |         29 |          0 |         82 |
+| android\app\src\main\res                                                                                      |          4 |         38 |         18 |          0 |         56 |
+| android\app\src\main\res\drawable                                                                             |          1 |          9 |          0 |          0 |          9 |
+| android\app\src\main\res\drawable-v21                                                                         |          1 |          9 |          0 |          0 |          9 |
+| android\app\src\main\res\values                                                                               |          1 |         10 |          9 |          0 |         19 |
+| android\app\src\main\res\values-night                                                                         |          1 |         10 |          9 |          0 |         19 |
+| android\app\src\profile                                                                                       |          1 |          4 |          3 |          1 |          8 |
+| android\gradle                                                                                                |          1 |          5 |          1 |          1 |          7 |
+| android\gradle\wrapper                                                                                        |          1 |          5 |          1 |          1 |          7 |
+| assets                                                                                                        |         10 |         79 |          1 |          9 |         89 |
+| assets\images                                                                                                 |         10 |         79 |          1 |          9 |         89 |
+| ios                                                                                                           |         12 |        342 |          2 |         12 |        356 |
+| ios\Flutter                                                                                                   |          1 |         26 |          0 |          1 |         27 |
+| ios\Runner                                                                                                    |          9 |        300 |          2 |          9 |        311 |
+| ios\Runner.xcodeproj                                                                                          |          1 |          8 |          0 |          1 |          9 |
+| ios\Runner.xcodeproj\project.xcworkspace                                                                      |          1 |          8 |          0 |          1 |          9 |
+| ios\Runner.xcodeproj\project.xcworkspace\xcshareddata                                                         |          1 |          8 |          0 |          1 |          9 |
+| ios\Runner.xcworkspace                                                                                        |          1 |          8 |          0 |          1 |          9 |
+| ios\Runner.xcworkspace\xcshareddata                                                                           |          1 |          8 |          0 |          1 |          9 |
+| ios\Runner\Assets.xcassets                                                                                    |          4 |        169 |          0 |          5 |        174 |
+| ios\Runner\Assets.xcassets\AppIcon.appiconset                                                                 |          1 |        122 |          0 |          1 |        123 |
+| ios\Runner\Assets.xcassets\LaunchBackground.imageset                                                          |          1 |         21 |          0 |          1 |         22 |
+| ios\Runner\Assets.xcassets\LaunchImage.imageset                                                               |          2 |         26 |          0 |          3 |         29 |
+| ios\Runner\Base.lproj                                                                                         |          2 |         68 |          2 |          1 |         71 |
+| lib                                                                                                           |         59 |      3,395 |        154 |        569 |      4,118 |
+| lib\bloc                                                                                                      |         15 |        378 |          8 |        134 |        520 |
+| lib\bloc\full_screen_photo                                                                                    |          3 |         91 |          1 |         23 |        115 |
+| lib\bloc\photo_add_bloc                                                                                       |          3 |         70 |          1 |         18 |         89 |
+| lib\bloc\photo_bloc                                                                                           |          3 |         58 |          3 |         44 |        105 |
+| lib\bloc\settings_bloc                                                                                        |          3 |         39 |          2 |         22 |         63 |
+| lib\bloc\user_bloc                                                                                            |          3 |        120 |          1 |         27 |        148 |
+| lib\bottom_bar                                                                                                |         14 |      1,462 |        110 |        170 |      1,742 |
+| lib\bottom_bar\add_photo                                                                                      |          4 |        272 |         13 |         27 |        312 |
+| lib\bottom_bar\photos                                                                                         |          6 |        744 |         85 |         93 |        922 |
+| lib\bottom_bar\photos\screens                                                                                 |          4 |        550 |         58 |         64 |        672 |
+| lib\bottom_bar\profile                                                                                        |          4 |        446 |         12 |         50 |        508 |
+| lib\bottom_bar\profile\screens                                                                                |          2 |        122 |          3 |         23 |        148 |
+| lib\bottom_bar\profile\widgets                                                                                |          2 |        324 |          9 |         27 |        360 |
+| lib\interceptor                                                                                               |          1 |         46 |          0 |          9 |         55 |
+| lib\local_storage                                                                                             |          2 |         83 |          0 |         26 |        109 |
+| lib\models                                                                                                    |          9 |        296 |          0 |         74 |        370 |
+| lib\models\photo                                                                                              |          1 |         36 |          0 |          8 |         44 |
+| lib\models\photo_add                                                                                          |          2 |         65 |          0 |         19 |         84 |
+| lib\models\user                                                                                               |          5 |        180 |          0 |         43 |        223 |
+| lib\models\user\client                                                                                        |          2 |         58 |          0 |         14 |         72 |
+| lib\models\user\token                                                                                         |          1 |         35 |          0 |          8 |         43 |
+| lib\services                                                                                                  |          8 |        289 |         13 |         46 |        348 |
+| lib\services\photo                                                                                            |          1 |         34 |          6 |         16 |         56 |
+| lib\services\photo_add                                                                                        |          2 |         75 |          1 |          8 |         84 |
+| lib\services\user                                                                                             |          5 |        180 |          6 |         22 |        208 |
+| lib\welcome_screen                                                                                            |          3 |        385 |          5 |         27 |        417 |
+| lib\welcome_screen\screens                                                                                    |          3 |        385 |          5 |         27 |        417 |
+| lib\widgets                                                                                                   |          3 |        227 |          8 |         37 |        272 |
+| test                                                                                                          |          1 |         14 |         10 |          7 |         31 |
+| web                                                                                                           |          3 |        151 |         14 |         12 |        177 |
+| web\splash                                                                                                    |          1 |         38 |          0 |          6 |         44 |
++---------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                                      | language   | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| c:\Users\Kostya\Desktop\webant\README.md                                                                      | Markdown   |         10 |          0 |          7 |         17 |
+| c:\Users\Kostya\Desktop\webant\android\app\build.gradle                                                       | Groovy     |         49 |          3 |         10 |         62 |
+| c:\Users\Kostya\Desktop\webant\android\app\google-services.json                                               | JSON       |         39 |          0 |          0 |         39 |
+| c:\Users\Kostya\Desktop\webant\android\app\src\debug\AndroidManifest.xml                                      | XML        |          4 |          3 |          1 |          8 |
+| c:\Users\Kostya\Desktop\webant\android\app\src\main\AndroidManifest.xml                                       | XML        |         15 |         11 |          0 |         26 |
+| c:\Users\Kostya\Desktop\webant\android\app\src\main\res\drawable-v21\launch_background.xml                    | XML        |          9 |          0 |          0 |          9 |
+| c:\Users\Kostya\Desktop\webant\android\app\src\main\res\drawable\launch_background.xml                        | XML        |          9 |          0 |          0 |          9 |
+| c:\Users\Kostya\Desktop\webant\android\app\src\main\res\values-night\styles.xml                               | XML        |         10 |          9 |          0 |         19 |
+| c:\Users\Kostya\Desktop\webant\android\app\src\main\res\values\styles.xml                                     | XML        |         10 |          9 |          0 |         19 |
+| c:\Users\Kostya\Desktop\webant\android\app\src\profile\AndroidManifest.xml                                    | XML        |          4 |          3 |          1 |          8 |
+| c:\Users\Kostya\Desktop\webant\android\build.gradle                                                           | Groovy     |         26 |          0 |          5 |         31 |
+| c:\Users\Kostya\Desktop\webant\android\gradle.properties                                                      | Properties |          3 |          0 |          1 |          4 |
+| c:\Users\Kostya\Desktop\webant\android\gradle\wrapper\gradle-wrapper.properties                               | Properties |          5 |          1 |          1 |          7 |
+| c:\Users\Kostya\Desktop\webant\android\settings.gradle                                                        | Groovy     |          8 |          0 |          4 |         12 |
+| c:\Users\Kostya\Desktop\webant\assets\images\add_icon.svg                                                     | XML        |         16 |          1 |          1 |         18 |
+| c:\Users\Kostya\Desktop\webant\assets\images\calendar_icon.svg                                                | XML        |         15 |          0 |          1 |         16 |
+| c:\Users\Kostya\Desktop\webant\assets\images\camera_icon.svg                                                  | XML        |          3 |          0 |          0 |          3 |
+| c:\Users\Kostya\Desktop\webant\assets\images\eye_icon.svg                                                     | XML        |          3 |          0 |          1 |          4 |
+| c:\Users\Kostya\Desktop\webant\assets\images\home_icon.svg                                                    | XML        |          3 |          0 |          1 |          4 |
+| c:\Users\Kostya\Desktop\webant\assets\images\mail_icon.svg                                                    | XML        |          7 |          0 |          1 |          8 |
+| c:\Users\Kostya\Desktop\webant\assets\images\news_feed.svg                                                    | XML        |          5 |          0 |          2 |          7 |
+| c:\Users\Kostya\Desktop\webant\assets\images\photo_add_icon.svg                                               | XML        |         21 |          0 |          0 |         21 |
+| c:\Users\Kostya\Desktop\webant\assets\images\profile_icon.svg                                                 | XML        |          3 |          0 |          1 |          4 |
+| c:\Users\Kostya\Desktop\webant\assets\images\username_icon.svg                                                | XML        |          3 |          0 |          1 |          4 |
+| c:\Users\Kostya\Desktop\webant\ios\Flutter\AppFrameworkInfo.plist                                             | XML        |         26 |          0 |          1 |         27 |
+| c:\Users\Kostya\Desktop\webant\ios\Runner.xcodeproj\project.xcworkspace\xcshareddata\IDEWorkspaceChecks.plist | XML        |          8 |          0 |          1 |          9 |
+| c:\Users\Kostya\Desktop\webant\ios\Runner.xcworkspace\xcshareddata\IDEWorkspaceChecks.plist                   | XML        |          8 |          0 |          1 |          9 |
+| c:\Users\Kostya\Desktop\webant\ios\Runner\AppDelegate.swift                                                   | Swift      |         12 |          0 |          2 |         14 |
+| c:\Users\Kostya\Desktop\webant\ios\Runner\Assets.xcassets\AppIcon.appiconset\Contents.json                    | JSON       |        122 |          0 |          1 |        123 |
+| c:\Users\Kostya\Desktop\webant\ios\Runner\Assets.xcassets\LaunchBackground.imageset\Contents.json             | JSON       |         21 |          0 |          1 |         22 |
+| c:\Users\Kostya\Desktop\webant\ios\Runner\Assets.xcassets\LaunchImage.imageset\Contents.json                  | JSON       |         23 |          0 |          1 |         24 |
+| c:\Users\Kostya\Desktop\webant\ios\Runner\Assets.xcassets\LaunchImage.imageset\README.md                      | Markdown   |          3 |          0 |          2 |          5 |
+| c:\Users\Kostya\Desktop\webant\ios\Runner\Base.lproj\LaunchScreen.storyboard                                  | XML        |         43 |          1 |          0 |         44 |
+| c:\Users\Kostya\Desktop\webant\ios\Runner\Base.lproj\Main.storyboard                                          | XML        |         25 |          1 |          1 |         27 |
+| c:\Users\Kostya\Desktop\webant\ios\Runner\Info.plist                                                          | XML        |         50 |          0 |          0 |         50 |
+| c:\Users\Kostya\Desktop\webant\ios\Runner\Runner-Bridging-Header.h                                            | C++        |          1 |          0 |          1 |          2 |
+| c:\Users\Kostya\Desktop\webant\lib\bloc\full_screen_photo\full_screen_photo_bloc.dart                         | Dart       |         70 |          1 |          9 |         80 |
+| c:\Users\Kostya\Desktop\webant\lib\bloc\full_screen_photo\full_screen_photo_event.dart                        | Dart       |          7 |          0 |          4 |         11 |
+| c:\Users\Kostya\Desktop\webant\lib\bloc\full_screen_photo\full_screen_photo_state.dart                        | Dart       |         14 |          0 |         10 |         24 |
+| c:\Users\Kostya\Desktop\webant\lib\bloc\photo_add_bloc\photo_add_bloc.dart                                    | Dart       |         43 |          1 |          5 |         49 |
+| c:\Users\Kostya\Desktop\webant\lib\bloc\photo_add_bloc\photo_add_event.dart                                   | Dart       |         10 |          0 |          6 |         16 |
+| c:\Users\Kostya\Desktop\webant\lib\bloc\photo_add_bloc\photo_add_state.dart                                   | Dart       |         17 |          0 |          7 |         24 |
+| c:\Users\Kostya\Desktop\webant\lib\bloc\photo_bloc\photo_bloc.dart                                            | Dart       |         33 |          0 |         16 |         49 |
+| c:\Users\Kostya\Desktop\webant\lib\bloc\photo_bloc\photo_event.dart                                           | Dart       |         10 |          0 |         10 |         20 |
+| c:\Users\Kostya\Desktop\webant\lib\bloc\photo_bloc\photo_state.dart                                           | Dart       |         15 |          3 |         18 |         36 |
+| c:\Users\Kostya\Desktop\webant\lib\bloc\settings_bloc\settings_bloc.dart                                      | Dart       |         19 |          2 |          8 |         29 |
+| c:\Users\Kostya\Desktop\webant\lib\bloc\settings_bloc\settings_event.dart                                     | Dart       |          6 |          0 |          4 |         10 |
+| c:\Users\Kostya\Desktop\webant\lib\bloc\settings_bloc\settings_state.dart                                     | Dart       |         14 |          0 |         10 |         24 |
+| c:\Users\Kostya\Desktop\webant\lib\bloc\user_bloc\user_bloc.dart                                              | Dart       |         86 |          1 |         10 |         97 |
+| c:\Users\Kostya\Desktop\webant\lib\bloc\user_bloc\user_event.dart                                             | Dart       |         17 |          0 |          9 |         26 |
+| c:\Users\Kostya\Desktop\webant\lib\bloc\user_bloc\user_state.dart                                             | Dart       |         17 |          0 |          8 |         25 |
+| c:\Users\Kostya\Desktop\webant\lib\bottom_bar\add_photo\photo_add.dart                                        | Dart       |        200 |          8 |         19 |        227 |
+| c:\Users\Kostya\Desktop\webant\lib\bottom_bar\add_photo\photo_add2.dart                                       | Dart       |          0 |          0 |          1 |          1 |
+| c:\Users\Kostya\Desktop\webant\lib\bottom_bar\add_photo\photo_add_builder.dart                                | Dart       |         72 |          5 |          6 |         83 |
+| c:\Users\Kostya\Desktop\webant\lib\bottom_bar\add_photo\root_add.dart                                         | Dart       |          0 |          0 |          1 |          1 |
+| c:\Users\Kostya\Desktop\webant\lib\bottom_bar\photos\photos2_holder.dart                                      | Dart       |        152 |         25 |         24 |        201 |
+| c:\Users\Kostya\Desktop\webant\lib\bottom_bar\photos\photos_holder.dart                                       | Dart       |         42 |          2 |          5 |         49 |
+| c:\Users\Kostya\Desktop\webant\lib\bottom_bar\photos\screens\full_screen_image.dart                           | Dart       |        129 |          2 |          7 |        138 |
+| c:\Users\Kostya\Desktop\webant\lib\bottom_bar\photos\screens\full_screen_image_build.dart                     | Dart       |         25 |          2 |          6 |         33 |
+| c:\Users\Kostya\Desktop\webant\lib\bottom_bar\photos\screens\new_photos.dart                                  | Dart       |        205 |         43 |         29 |        277 |
+| c:\Users\Kostya\Desktop\webant\lib\bottom_bar\photos\screens\photos2.dart                                     | Dart       |        191 |         11 |         22 |        224 |
+| c:\Users\Kostya\Desktop\webant\lib\bottom_bar\profile\screens\user_profile.dart                               | Dart       |         74 |          1 |          5 |         80 |
+| c:\Users\Kostya\Desktop\webant\lib\bottom_bar\profile\screens\user_settings.dart                              | Dart       |         48 |          2 |         18 |         68 |
+| c:\Users\Kostya\Desktop\webant\lib\bottom_bar\profile\widgets\header_profile.dart                             | Dart       |         67 |          2 |         11 |         80 |
+| c:\Users\Kostya\Desktop\webant\lib\bottom_bar\profile\widgets\user_settings_widget.dart                       | Dart       |        257 |          7 |         16 |        280 |
+| c:\Users\Kostya\Desktop\webant\lib\constants.dart                                                             | Dart       |         59 |          0 |         25 |         84 |
+| c:\Users\Kostya\Desktop\webant\lib\interceptor\auth2_interceptor.dart                                         | Dart       |         46 |          0 |          9 |         55 |
+| c:\Users\Kostya\Desktop\webant\lib\local_storage\hive_load.dart                                               | Dart       |         45 |          0 |         14 |         59 |
+| c:\Users\Kostya\Desktop\webant\lib\local_storage\hive_save.dart                                               | Dart       |         38 |          0 |         12 |         50 |
+| c:\Users\Kostya\Desktop\webant\lib\main.dart                                                                  | Dart       |         40 |          2 |          7 |         49 |
+| c:\Users\Kostya\Desktop\webant\lib\models\file.dart                                                           | Dart       |         15 |          0 |          4 |         19 |
+| c:\Users\Kostya\Desktop\webant\lib\models\photo\photo.dart                                                    | Dart       |         36 |          0 |          8 |         44 |
+| c:\Users\Kostya\Desktop\webant\lib\models\photo_add\media_object_add.dart                                     | Dart       |         26 |          0 |          6 |         32 |
+| c:\Users\Kostya\Desktop\webant\lib\models\photo_add\photo_post.dart                                           | Dart       |         39 |          0 |         13 |         52 |
+| c:\Users\Kostya\Desktop\webant\lib\models\user\client\client_get.dart                                         | Dart       |         35 |          0 |          8 |         43 |
+| c:\Users\Kostya\Desktop\webant\lib\models\user\client\client_post.dart                                        | Dart       |         23 |          0 |          6 |         29 |
+| c:\Users\Kostya\Desktop\webant\lib\models\user\token\token_get.dart                                           | Dart       |         35 |          0 |          8 |         43 |
+| c:\Users\Kostya\Desktop\webant\lib\models\user\user_get.dart                                                  | Dart       |         48 |          0 |          7 |         55 |
+| c:\Users\Kostya\Desktop\webant\lib\models\user\user_post.dart                                                 | Dart       |         39 |          0 |         14 |         53 |
+| c:\Users\Kostya\Desktop\webant\lib\my_home_page.dart                                                          | Dart       |         63 |          5 |          8 |         76 |
+| c:\Users\Kostya\Desktop\webant\lib\root_page.dart                                                             | Dart       |         67 |          3 |          6 |         76 |
+| c:\Users\Kostya\Desktop\webant\lib\services\photo\photos_provider.dart                                        | Dart       |         34 |          6 |         16 |         56 |
+| c:\Users\Kostya\Desktop\webant\lib\services\photo_add\media_object_provider.dart                              | Dart       |         35 |          1 |          5 |         41 |
+| c:\Users\Kostya\Desktop\webant\lib\services\photo_add\photo_add_provider.dart                                 | Dart       |         40 |          0 |          3 |         43 |
+| c:\Users\Kostya\Desktop\webant\lib\services\user\client_provider.dart                                         | Dart       |         35 |          0 |          2 |         37 |
+| c:\Users\Kostya\Desktop\webant\lib\services\user\get_user.dart                                                | Dart       |         31 |          2 |          5 |         38 |
+| c:\Users\Kostya\Desktop\webant\lib\services\user\token_provider.dart                                          | Dart       |         34 |          2 |          7 |         43 |
+| c:\Users\Kostya\Desktop\webant\lib\services\user\user_provider.dart                                           | Dart       |         50 |          0 |          3 |         53 |
+| c:\Users\Kostya\Desktop\webant\lib\services\user\user_provider_create.dart                                    | Dart       |         30 |          2 |          5 |         37 |
+| c:\Users\Kostya\Desktop\webant\lib\welcome_screen\screens\sign_in.dart                                        | Dart       |        149 |          1 |         11 |        161 |
+| c:\Users\Kostya\Desktop\webant\lib\welcome_screen\screens\sign_up.dart                                        | Dart       |        172 |          4 |         13 |        189 |
+| c:\Users\Kostya\Desktop\webant\lib\welcome_screen\screens\welcome_screen.dart                                 | Dart       |         64 |          0 |          3 |         67 |
+| c:\Users\Kostya\Desktop\webant\lib\widgets\custom_pass_with_confim.dart                                       | Dart       |         83 |          2 |         18 |        103 |
+| c:\Users\Kostya\Desktop\webant\lib\widgets\custom_password_field.dart                                         | Dart       |         75 |          2 |          9 |         86 |
+| c:\Users\Kostya\Desktop\webant\lib\widgets\custom_text_field.dart                                             | Dart       |         69 |          4 |         10 |         83 |
+| c:\Users\Kostya\Desktop\webant\pubspec.yaml                                                                   | YAML       |         44 |         44 |         20 |        108 |
+| c:\Users\Kostya\Desktop\webant\test\widget_test.dart                                                          | Dart       |         14 |         10 |          7 |         31 |
+| c:\Users\Kostya\Desktop\webant\web\index.html                                                                 | HTML       |         90 |         14 |          5 |        109 |
+| c:\Users\Kostya\Desktop\webant\web\manifest.json                                                              | JSON       |         23 |          0 |          1 |         24 |
+| c:\Users\Kostya\Desktop\webant\web\splash\style.css                                                           | CSS        |         38 |          0 |          6 |         44 |
+| Total                                                                                                         |            |      4,226 |        264 |        659 |      5,149 |
++---------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

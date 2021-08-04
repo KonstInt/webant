@@ -47,7 +47,8 @@ class _RootPageState extends State<RootPage> {
           Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
-              builder: (BuildContext context) => MyHomePage(state.user, state.avatar, 1),
+              builder: (BuildContext context) =>
+                  MyHomePage(state.user, state.avatar, 0),
             ),
             (route) => false,
           );
@@ -57,7 +58,8 @@ class _RootPageState extends State<RootPage> {
           Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
-              builder: (BuildContext context) => MyHomePage(state.user, state.avatar, 1),
+              builder: (BuildContext context) =>
+                  MyHomePage(state.user, state.avatar, 0),
             ),
             (route) => false,
           );
@@ -65,9 +67,10 @@ class _RootPageState extends State<RootPage> {
         //*/
       }, builder: (context, state) {
         if (state is UserLoadingState) {
-          return Center(child: CupertinoActivityIndicator());
+          return Center(
+              child: CupertinoActivityIndicator());
         } else {
-          return Container();
+          return Center();
         }
       }),
     );
