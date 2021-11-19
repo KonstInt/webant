@@ -1,3 +1,4 @@
+import 'package:flutter_webant/models/photo/photo.dart';
 import 'package:flutter_webant/models/user/client/client_get.dart';
 import 'package:flutter_webant/models/user/user_get.dart';
 import 'package:hive/hive.dart';
@@ -5,11 +6,10 @@ import 'package:hive/hive.dart';
 class HiveSave{
 
   
-    static fullSave(UserGet user, String password, String token, String refreshToken, bool inSystem, ClientGet? client) async {
+    static fullSave(UserGet user, String token, String refreshToken, bool inSystem, ClientGet? client) async {
      
      var box = await Hive.openBox('Storage');
      box.put('current user', user.toJson());
-     box.put('password', password);
      box.put('token', token);
      box.put('refreshToken', refreshToken);
      if(inSystem)
@@ -44,6 +44,10 @@ class HiveSave{
     box.put('client', client);
   }
 
+  static savePhotos(List<Photo> photos, String type) async {
+    var box = await Hive.openBox(type);
+    box.put('photo', photos);
+  }
 
  
 

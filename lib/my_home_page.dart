@@ -36,7 +36,6 @@ class _MyHomePageState extends State<MyHomePage> {
   //final tabs =
   @override
   Widget build(BuildContext context) {
-    if (Constants.isInSystem)
       return Scaffold(
         body: IndexedStack(
           index: widget._currentIndex,
@@ -69,7 +68,6 @@ class _MyHomePageState extends State<MyHomePage> {
           }),
         ),
       );
-    else
-      return WelcomeScreen();
+    
   }
 }

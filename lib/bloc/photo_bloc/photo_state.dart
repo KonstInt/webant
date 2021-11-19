@@ -32,4 +32,8 @@ class PhotoLoadingState extends PhotoState {
 
 
 
-class PhotoErrorState extends PhotoState {}
+class PhotoNoInternetState extends PhotoState {
+  List<Photo> photos;
+  PhotoNoInternetState(this.photos);
+
+}

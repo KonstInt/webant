@@ -28,7 +28,7 @@ class _RootPageState extends State<RootPage> {
         ///*
         if (state is UserNotAccesState) {
           if (widget.type == 'auto') {
-            Constants.isInSystem = true;
+            //Constants.isInSystem = true;
             Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
@@ -37,13 +37,13 @@ class _RootPageState extends State<RootPage> {
               (route) => false,
             );
           } else {
-            Constants.isInSystem = true;
+           // Constants.isInSystem = true;
             Navigator.pop(context);
           }
         }
 
         if (state is UserLoadedState) {
-          Constants.isInSystem = true;
+          //Constants.isInSystem = true;
           Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
@@ -54,7 +54,7 @@ class _RootPageState extends State<RootPage> {
           );
         }
         if (state is UserNoInternetState) {
-          Constants.isInSystem = true;
+          //Constants.isInSystem = true;
           Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(

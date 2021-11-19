@@ -142,7 +142,7 @@ class _SignUpState extends State<SignUp> {
                     onPressed: () {
                       //UserGet myUser;
                       UserPost signUpUser = new UserPost(email: widget.email.getText(), password: widget.passwordConfim.getText(), fullName: widget.username.getText(), roles: ["user"], birthday: widget.dateController.text, username: widget.username.getText());
-                      Constants.isInSystem = true;
+                      //Constants.isInSystem = true;
                         Navigator.push(
                           context,
                           MaterialPageRoute(

@@ -9,6 +9,8 @@ import 'package:flutter_webant/services/user/client_provider.dart';
 import 'package:flutter_webant/services/user/token_provider.dart';
 import 'package:intl/intl.dart';
 
+import '../../constants.dart';
+
 class UserProvider {
   static Future<UserGet> getUser(
       String username, String password, String type) async {
@@ -39,8 +41,7 @@ class UserProvider {
         if (response.statusCode == 200) {
           print('Ok');
           var user = UserGet.fromMap(response.data);
-          user.birthday =
-              DateFormat('dd.MM.yyyy').format(DateTime.parse(user.birthday));
+          user.birthday = Constants.formatStr(user.birthday);
           return user;
         }
       });

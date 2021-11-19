@@ -43,7 +43,7 @@ class _PhotoAddBuilderState extends State<PhotoAddBuilder> {
         }
 
         if (state is PhotoAddLoadedState) {
-          Constants.isInSystem = true;
+          //Constants.isInSystem = true;
           //UserGet user = await HiveLoad.getUser();
           Navigator.pushAndRemoveUntil(
             context,
@@ -61,7 +61,7 @@ class _PhotoAddBuilderState extends State<PhotoAddBuilder> {
           );
         }
         if (state is PhotoAddNoInternetState) {
-          Constants.isInSystem = true;
+          //Constants.isInSystem = true;
           Navigator.pop(context);
            ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(

@@ -1,3 +1,4 @@
+import 'package:flutter_webant/models/photo/photo.dart';
 import 'package:flutter_webant/models/user/client/client_get.dart';
 import 'package:flutter_webant/models/user/user_get.dart';
 import 'package:hive/hive.dart';
@@ -22,12 +23,6 @@ class HiveLoad {
   }
 
   
-
-  static Future<String> getPassword() async {
-    var box = await Hive.openBox('Storage');
-    return box.get('password') == null ? '' : box.get('password');
-  }
-
   static Future<String> getAvatar() async {
     var box = await Hive.openBox('Storage');
     return box.get('avatar') == null ? '' : box.get('avatar');
@@ -52,6 +47,13 @@ class HiveLoad {
     else
       return false;
     
+  }
+
+  static Future<List<Photo>> getPhotos(type) async {
+    var box = await Hive.openBox(type);
+    List<Photo> photos = box.get('photos') != null ? box.get('photos') :[];
+    return photos;
+
   }
 
 

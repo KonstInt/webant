@@ -8,10 +8,10 @@ import 'package:flutter_webant/bloc/photo_bloc/photo_bloc.dart';
 import 'package:flutter_webant/bottom_bar/photos/screens/full_screen_image_build.dart';
 
 import 'package:flutter_webant/constants.dart';
+import 'package:flutter_webant/local_storage/hive_load.dart';
 import 'package:flutter_webant/models/photo/photo.dart';
 
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-
 
 import 'full_screen_image.dart';
 
@@ -45,8 +45,7 @@ class _PhotosState2 extends State<Photos2> {
 
   //Refresh List of Photos
   void _onRefresh() async {
-    DefaultCacheManager manager = new DefaultCacheManager();
-    manager.emptyCache();
+    Constants.customCacherManager.emptyCache();
     _photos.clear();
     currentPage = 1;
     BlocProvider.of<PhotoBloc>(context).add(
@@ -69,16 +68,17 @@ class _PhotosState2 extends State<Photos2> {
       _refreshController.loadNoData();
   }
 
+  void loadHive(List<Photo> hiveSave, type) async {
+    await HiveLoad.getUser();
+  }
+
   @override
   Widget build(BuildContext context) {
     String type = widget.type;
     type = type[0].toUpperCase() + type.substring(1);
 
     return Scaffold(
-      
-      body: Column(
-        
-        children: [
+      body: Column(children: [
         widget.showHeader
             ? AppBar(
                 title: Text(type,
@@ -97,127 +97,133 @@ class _PhotosState2 extends State<Photos2> {
           listener: (context, state) {
             if (state is PhotoLoadedState) {
               _photos.addAll(state.loadedPhoto);
+              loadHive(_photos, type);
+            }
+            if (state is PhotoNoInternetState) {
+              if (state.photos.isNotEmpty) _photos = state.photos;
             }
             // TODO: implement listener
           },
           child: BlocBuilder<PhotoBloc, PhotoState>(builder: (context, state) {
             return Container(
-                margin: EdgeInsets.only(top: 0),
-                color: Colors.white,
-                child: SmartRefresher(
-                  enablePullDown: true,
-                  enablePullUp: true,
-                  header: ClassicHeader(),
-                  footer: CustomFooter(
-                    builder: (BuildContext context, mode) {
-                      Widget body;
-                      if (mode == LoadStatus.idle) {
-                        body = CupertinoActivityIndicator();
-                      } else if (mode == LoadStatus.loading) {
-                        body = CupertinoActivityIndicator();
-                      } else if (mode == LoadStatus.failed) {
-                        body = Text("Load Failed!Click retry!");
-                      } else if (mode == LoadStatus.canLoading) {
-                        body = Text("release to load more");
-                      } else {
-                        body = Text("No more Data");
-                      }
-                      return Container(
-                        height: 55.0,
-                        child: Center(child: body),
-                      );
-                    },
-                  ),
-                  controller: _refreshController,
-                  onRefresh: _onRefresh,
-                  onLoading: _onLoading,
-                  child: (() {
-                    if (state is PhotoErrorState) {
-                      return Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Image.asset(Constants.noInternetPicturePath),
-                            Text(
-                              "No Data Connection Available.",
-                            )
-                          ],
-                        ),
-                      );
+              margin: EdgeInsets.only(top: 0),
+              color: Colors.white,
+              child: SmartRefresher(
+                enablePullDown: true,
+                enablePullUp: true,
+                header: ClassicHeader(),
+                footer: CustomFooter(
+                  builder: (BuildContext context, mode) {
+                    Widget body;
+                    if (mode == LoadStatus.idle) {
+                      body = CupertinoActivityIndicator();
+                    } else if (mode == LoadStatus.loading) {
+                      body = CupertinoActivityIndicator();
+                    } else if (mode == LoadStatus.failed) {
+                      body = Text("Load Failed!Click retry!");
+                    } else if (mode == LoadStatus.canLoading) {
+                      body = Text("release to load more");
+                    } else {
+                      body = Text("No more Data");
                     }
-                    if (state is PhotoLoadingState) {
-                      return Center(
-                        child: Text('Loading...'),
-                      );
-                    }
-
-                    if (state is PhotoLoadedState ||
-                        (state is PhotoEmptyState && _photos.isNotEmpty)) {
-                      if (state is PhotoEmptyState) widget.isLast = true;
-
-                      return GridView.builder(
-                        //padding: EdgeInsets.only(top: 15),
-
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: widget.columns,
-                        ),
-                        itemBuilder: (BuildContext context, int index) {
-                          return GestureDetector(
-                            child: Center(
-                              child: Container(
-                                margin: EdgeInsets.all(5.0),
-                                alignment: Alignment.center,
-                                child: Container(
-                                  child: CachedNetworkImage(
-                                    imageUrl: Constants.webAdressForPicture +
-                                        _photos[index].image.name,
-                                    imageBuilder: (context, imageProvider) =>
-                                        Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(30.0),
-                                        image: DecorationImage(
-                                            image: imageProvider,
-                                            fit: BoxFit.cover),
-                                      ),
-                                    ),
-                                    placeholder: (context, url) =>
-                                        CupertinoActivityIndicator(),
-                                    errorWidget: (context, url, error) =>
-                                        Icon(Icons.error),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            onTap: () {
-                              //GO to the full_screen_image
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          FullScreenImageBuild(_photos[index])));
-                            },
-                          );
-                        },
-                        itemCount: _photos.length,
-                        //controller: _scrollViewController,
-                      );
-                    }
-
-                    if (state is PhotoEmptyState && _photos.isEmpty) {
-                      widget.isLast = true;
-                      return Center(
-                        child: Text('No Data'),
-                      );
-                    }
-                  }()),
+                    return Container(
+                      height: 55.0,
+                      child: Center(child: body),
+                    );
+                  },
                 ),
-              
+                controller: _refreshController,
+                onRefresh: _onRefresh,
+                onLoading: _onLoading,
+                child: (() {
+                  if (state is PhotoNoInternetState) {
+                    if(_photos.length > 0)
+                    return gridOfPhotos();
+                    else 
+                    return Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Image.asset(Constants.noInternetPicturePath),
+                          Text(
+                            "No Data Connection Available.",
+                          )
+                        ],
+                      ),
+                    );
+                  }
+                  if (state is PhotoLoadingState) {
+                    return Center(
+                      child: Text('Loading...'),
+                    );
+                  }
+
+                  if (state is PhotoLoadedState ||
+                      (state is PhotoEmptyState && _photos.isNotEmpty)) {
+                    if (state is PhotoEmptyState) widget.isLast = true;
+                    return gridOfPhotos();
+                  }
+
+                  if (state is PhotoEmptyState && _photos.isEmpty) {
+                    widget.isLast = true;
+                    return Center(
+                      child: Text('No Data'),
+                    );
+                  }
+                }()),
+              ),
             );
           }),
         )),
       ]),
+    );
+  }
+
+  Widget gridOfPhotos() {
+    return GridView.builder(
+      //padding: EdgeInsets.only(top: 15),
+
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: widget.columns,
+      ),
+      itemBuilder: (BuildContext context, int index) {
+        return GestureDetector(
+          child: Center(
+            child: Container(
+              margin: EdgeInsets.all(5.0),
+              alignment: Alignment.center,
+              child: Container(
+                child: CachedNetworkImage(
+                  cacheManager: Constants.customCacherManager,
+                  key: UniqueKey(),
+                  imageUrl:
+                      Constants.webAdressForPicture + _photos[index].image.name,
+                  imageBuilder: (context, imageProvider) => Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30.0),
+                      image: DecorationImage(
+                          image: imageProvider, fit: BoxFit.cover),
+                    ),
+                  ),
+                  placeholder: (context, url) => CupertinoActivityIndicator(),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                ),
+              ),
+            ),
+          ),
+          onTap: () {
+            //GO to the full_screen_image
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        FullScreenImageBuild(_photos[index])));
+          },
+        );
+      },
+      itemCount: _photos.length,
+      //controller: _scrollViewController,
     );
   }
 }

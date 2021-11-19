@@ -49,15 +49,17 @@ class _FullScreenImageState extends State<FullScreenImage> {
                     ),
                     Row(
                       children: [
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          margin: EdgeInsets.symmetric(),
-                          padding: EdgeInsets.all(10),
-                          child: Text(widget.photo.name,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 25,
-                                  color: Colors.black)),
+                        Expanded (
+                                                  child: Container(
+                            alignment: Alignment.centerLeft,
+                            margin: EdgeInsets.symmetric(),
+                            padding: EdgeInsets.all(10),
+                            child: Text(widget.photo.name,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 25,
+                                    color: Colors.black)),
+                          ),
                         ),
                         Spacer(),
                         Container(
@@ -92,7 +94,7 @@ class _FullScreenImageState extends State<FullScreenImage> {
                         Spacer(),
                         Container(
                             margin: EdgeInsets.symmetric(horizontal: 10),
-                            child: Text(widget.photo.date,
+                            child: Text(Constants.formatStr(widget.photo.date),
                                 style: TextStyle(
                                     color: Colors.grey[600], fontSize: 15)))
                       ],

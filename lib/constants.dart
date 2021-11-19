@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:intl/intl.dart';
 
 import 'models/user/client/client_get.dart';
 import 'models/user/user_get.dart';
@@ -21,13 +23,7 @@ class Constants {
   static String myassetIconAddPhotoName = 'assets/images/photo_add_icon.svg';
   static String myassetIconAddName = 'assets/images/add_icon.svg';
 
-  static late UserGet currentUser;
-  static String refreshToken = '';
-  static String token = '';
-  static String password = '';
-  static String avatar = '';
-  static late ClientGet client;
-  static bool isInSystem = true;
+static final customCacherManager = CacheManager(Config('cacheKey', stalePeriod: Duration(days: 2)));
   
  
 static final Widget svgAddPhotoIcon =
@@ -73,11 +69,9 @@ static final Widget svgAddPhotoIcon =
   static final Widget mailIcon = SvgPicture.asset(_myassetMailName,
       color: Colors.grey[600], height: 2, width: 2);
 
-  static const MethodChannel _channel = const MethodChannel('storage_path');
-
-  static Future<String> get imagesPath async {
-    final String data = await _channel.invokeMethod('getImagesPath');
-    return data;
+  static String formatStr(String str){
+    return DateFormat('dd.MM.yyyy').format(DateTime.parse(str));
   }
+  
 
 }

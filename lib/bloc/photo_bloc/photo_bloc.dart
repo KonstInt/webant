@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter_webant/local_storage/hive_load.dart';
 import 'package:flutter_webant/models/photo/photo.dart';
 
 import 'package:flutter_webant/services/photo/photos_provider.dart';
@@ -36,7 +37,10 @@ class PhotoBloc extends Bloc<PhotoEvent, PhotoState> {
       }
       catch (e) {
         if(e == SocketException)
-         yield PhotoErrorState();
+        {
+        List<Photo>_loadedPhotosList = await HiveLoad.getPhotos(event.type);
+         yield PhotoNoInternetState(_loadedPhotosList);
+         }
         else
           yield PhotoEmptyState(); 
       }

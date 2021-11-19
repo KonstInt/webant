@@ -18,8 +18,7 @@ class GetUser {
           print('OGGGGGGKKKKK');
 
           var user = UserGet.fromMap(json);
-          user.birthday =
-              DateFormat('dd.MM.yyyy').format(DateTime.parse(user.birthday));
+          user.birthday = Constants.formatStr(user.birthday);
           return user;
         } catch (_) {
           return null;
